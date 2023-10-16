@@ -45,7 +45,8 @@ export class BookServiceService {
 
   deleteBook(id: string): Observable<Book> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<Book>(url).pipe(catchError(this.handleError));
+    console.log('cancellato')
+    return this.http.delete<Book>(url)
   }
 
   private handleError(error: any): Observable<never> {

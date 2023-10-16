@@ -21,12 +21,18 @@ export class BookListComponent implements OnInit {
   }
 
   deleteBook(bookId: string): void {
-    this.bookServ.deleteBook(bookId)
-      .subscribe(() => {
-        // Il libro è stato eliminato con successo
-        // Puoi eseguire altre azioni qui se necessario
-      }, error => {
+    this.bookServ.deleteBook(bookId).subscribe(
+      () => {
+       this.bookServ.getBooks().subscribe(books => {
+          this.books = books;
+        });
+      
+        this.router.navigateByUrl('/home');
+      },
+      error => {
         console.error('Errore durante l\'eliminazione del libro:', error);
-      });
+      }
+    );
   }
+  
 }

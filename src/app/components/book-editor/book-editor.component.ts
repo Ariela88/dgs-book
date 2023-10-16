@@ -11,13 +11,17 @@ import { BookStorageService } from 'src/app/services/book-storage.service';
   styleUrls: ['./book-editor.component.scss'],
 })
 export class BookEditorComponent implements OnInit {
-  newBook: Book = {
+  editedBook: Book = {
     id: '',
     author: '',
     title: '',
+    cover: '',
+    description: '',
   };
   bookForm!: FormGroup;
   isEditing = false;
+
+  allBooks:Book[]=[]
 
   constructor(
     private bookServ: BookServiceService,
@@ -34,6 +38,8 @@ export class BookEditorComponent implements OnInit {
       title: [''],
       author: [''],
       id: [''],
+      cover: [''],
+      description: [''],
     });
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -58,6 +64,8 @@ export class BookEditorComponent implements OnInit {
       id: [''],
       author: ['', Validators.required],
       title: ['', Validators.required],
+      cover: [''],
+      description: [''],
     });
   }
 
@@ -71,9 +79,8 @@ export class BookEditorComponent implements OnInit {
       if (!this.isEditing) {
         this.bookServ.createBook(updatedBook).subscribe(
           (response) => {
-            console.log('Nuovo libro creato con successo:', response);
-            this.bookStorageService.addBookToLocalStorage(response); 
-            this.resetFormAndExitEditMode();
+            this.bookStorageService.addBookToLocalStorage(response);
+            this.router.navigateByUrl('/home');
           },
           (error) => {
             console.error('Errore durante la creazione del libro:', error);
@@ -83,10 +90,10 @@ export class BookEditorComponent implements OnInit {
         this.bookServ.updateBook(updatedBook.id, updatedBook).subscribe(
           (response) => {
             console.log('Libro aggiornato con successo:', response);
-            this.resetFormAndExitEditMode();
+            this.router.navigateByUrl('/home');
           },
           (error) => {
-            console.error('Errore durante l\'aggiornamento del libro:', error);
+            console.error("Errore durante l'aggiornamento del libro:", error);
           }
         );
       }
@@ -95,18 +102,34 @@ export class BookEditorComponent implements OnInit {
     }
   }
 
-  
   cancelEditing(): void {
     this.resetFormAndExitEditMode();
   }
 
-  
   private resetFormAndExitEditMode(): void {
     this.bookForm.reset({
       id: '',
       author: '',
-      title: ''
+      title: '',
     });
     this.isEditing = false;
   }
+
+  // goToNextBook(): void {
+  //   const currentId = this.route.snapshot.paramMap.get('id');
+  //   const currentIndex = this.allBooks.findIndex(book => book.id === currentId);
+  
+   
+  //   if (currentIndex !== -1 && currentIndex < this.allBooks.length - 1) {
+     
+  //     const nextBookId = this.allBooks[currentIndex + 1].id;
+
+  //     this.router.navigate(['/libri', nextBookId]);
+  //   } else {
+  //     console.error('Nessun prossimo libro disponibile.');
+     
+  //   }
+  // }
+  
+  
 }

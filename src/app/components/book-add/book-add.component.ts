@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book-service.service';
 import { BookStorageService } from 'src/app/services/book-storage.service';
@@ -14,13 +15,16 @@ export class BookAddComponent {
     id: '',
     author: '',
     title: '',
+    cover:'',
+    description:''
   };
   bookForm!: FormGroup;
 isEditing = false
   constructor(
     private formBuilder: FormBuilder,
     private bookServ: BookServiceService,
-    private bookStorageService: BookStorageService
+    private bookStorageService: BookStorageService,
+    private route:Router
   ) {}
 
   ngOnInit(): void {
@@ -50,9 +54,10 @@ isEditing = false
       const newBook: Book = this.bookForm.value;
       this.bookServ.createBook(newBook).subscribe(
         (response) => {
-          console.log('Nuovo libro creato con successo:', response);
+          
           this.bookStorageService.addBookToLocalStorage(response);
           this.bookForm.reset();
+          this.route.navigateByUrl('/home')
         },
         (error) => {
           console.error('Errore durante la creazione del libro:', error);

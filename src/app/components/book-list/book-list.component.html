@@ -12,14 +12,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let book of books" [routerLink]="['/editor', book.id]">
-            <td>
+        <tr *ngFor="let book of books">
+            <td [routerLink]="['/editor', book.id]">
                 {{book.id}}
 
             </td>
-            <td>{{ book.author }}</td>
-            <td>{{ book.title }}</td>
-            <td><mat-icon (click)="deleteBook(book.id)">delete</mat-icon> </td>
+            <td [routerLink]="['/editor', book.id]">{{ book.author }}</td>
+            <td [routerLink]="['/editor', book.id]">{{ book.title }}</td>
+            <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon >delete</mat-icon> </td>
         </tr>
     </tbody>
 </table>

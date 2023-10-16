@@ -7,12 +7,14 @@
             <mat-card-title>{{ bookForm.get('title')?.value }}</mat-card-title>
             <mat-card-subtitle>{{ bookForm.get('author')?.value }}</mat-card-subtitle>
         </mat-card-header>
+        <img mat-card-image src="{{ bookForm.get('cover')?.value }}" alt="Copertina del libero {{bookForm.get('title')}}">
         <mat-card-content> 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem consequuntur nam fuga facere temporibus, architecto porro tempora officia. Earum alias quam quia voluptate quae a magnam, libero eveniet quasi dignissimos.
+            {{bookForm.get('description')?.value}}
         </mat-card-content>
 
         <mat-card-actions>
             <button mat-button (click)="startEditing()">Modifica i Dati</button>
+            <!-- <button mat-button (click)="goToNextBook()">left_arrow</button> -->
 
         </mat-card-actions>
     </mat-card>
@@ -23,13 +25,21 @@
 
 <div *ngIf="isEditing" class="editor-container">
     <form [formGroup]="bookForm" class="form-container">
-        <div>
+        <div class="input-container">
             <label for="author">Autore:</label>
             <input type="text" id="author" formControlName="author" />
         </div>
-        <div>
+        <div class="input-container">
             <label for="title">Titolo:</label>
             <input type="text" id="title" formControlName="title" />
+        </div>
+        <div class="input-container">
+            <label for="cover">Copertina:</label>
+            <input type="text" id="cover" formControlName="cover" />
+        </div>
+        <div class="input-container">
+            <label for="description">Descrizione:</label>
+            <textarea  id="description" formControlName="description"></textarea>
         </div>
         <div class="button-container">
             <button  mat-button (click)="saveBook()">
