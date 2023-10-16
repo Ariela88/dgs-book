@@ -21,7 +21,7 @@ export class BookEditorComponent implements OnInit {
   bookForm!: FormGroup;
   isEditing = false;
 
-  allBooks:Book[]=[]
+  allBooks: Book[] = [];
 
   constructor(
     private bookServ: BookServiceService,
@@ -90,6 +90,7 @@ export class BookEditorComponent implements OnInit {
         this.bookServ.updateBook(updatedBook.id, updatedBook).subscribe(
           (response) => {
             console.log('Libro aggiornato con successo:', response);
+            this.resetFormAndExitEditMode();
             this.router.navigateByUrl('/home');
           },
           (error) => {
@@ -103,7 +104,11 @@ export class BookEditorComponent implements OnInit {
   }
 
   cancelEditing(): void {
-    this.resetFormAndExitEditMode();
+    this.bookForm.patchValue(this.editedBook);
+    this.isEditing = false;
+
+   
+    this.router.navigateByUrl(`/home`);
   }
 
   private resetFormAndExitEditMode(): void {
@@ -114,22 +119,4 @@ export class BookEditorComponent implements OnInit {
     });
     this.isEditing = false;
   }
-
-  // goToNextBook(): void {
-  //   const currentId = this.route.snapshot.paramMap.get('id');
-  //   const currentIndex = this.allBooks.findIndex(book => book.id === currentId);
-  
-   
-  //   if (currentIndex !== -1 && currentIndex < this.allBooks.length - 1) {
-     
-  //     const nextBookId = this.allBooks[currentIndex + 1].id;
-
-  //     this.router.navigate(['/libri', nextBookId]);
-  //   } else {
-  //     console.error('Nessun prossimo libro disponibile.');
-     
-  //   }
-  // }
-  
-  
 }

@@ -9,6 +9,7 @@ import { BookServiceService } from 'src/app/services/book-service.service';
   styleUrls: ['./book-list.component.scss']
 })
 export class BookListComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'title', 'author', ' '];
 
   books: Book[] = [];
 
