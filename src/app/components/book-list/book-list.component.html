@@ -1,0 +1,26 @@
+
+<div class="table-container"> 
+ 
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>author</th>
+            <th>title</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books" [routerLink]="['/editor', book.id]">
+            <td>
+                {{book.id}}
+
+            </td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.title }}</td>
+            <td><mat-icon (click)="deleteBook(book.id)">delete</mat-icon> </td>
+        </tr>
+    </tbody>
+</table>
+</div>

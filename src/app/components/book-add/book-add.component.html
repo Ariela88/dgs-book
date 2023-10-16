@@ -1,0 +1,22 @@
+<div class="add-container">
+    <div>
+       
+    <form  class="form-container" [formGroup]="bookForm">
+        <h3>Aggiungi un libro alla collezione: </h3>
+      <div>
+        <label for="author">Autore: </label>
+        <input type="text" id="author" formControlName="author" />
+      </div>
+      <div>
+        <label for="title">Titolo: </label>
+        <input type="text" id="title" formControlName="title" />
+      </div>
+  <div class="button-container"> 
+      <button (click)="saveNewBook()">
+        Salva
+      </button>
+      <button (click)="cancelEditing()">Annulla</button>
+    </div>
+    </form>
+  </div>
+</div>

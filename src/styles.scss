@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Norican&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
+html, body { height: 100%; 
+cursor: pointer;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-toolbar{
+    background-color: burlywood !important;
+}
+
+a{
+    text-decoration: none;
+    color: initial;
+}
+
+mat-card{
+    background-color: rgb(237, 208, 169) !important;
+}
