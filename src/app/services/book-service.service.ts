@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, distinctUntilChanged, map } from 'rxjs/operators';
 import { Book } from '../model/book';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,49 +8,166 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class BookServiceService {
-  readonly apiUrl = 'https://651a7a94340309952f0d59cb.mockapi.io/book';
+
+  private allBooksSubject = new BehaviorSubject<Book[]>([]);
+allBooks$ = this.allBooksSubject.asObservable();
+ 
+  //readonly apiUrl = 'https://651a7a94340309952f0d59cb.mockapi.io/book';
+  jsonBooks:Book[] = [
+    {
+     "author": "Merle Blanda",
+     "title": "Handcrafted Granite Bacon",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Enim iusto quod quod veniam ad delectus. Perspiciatis dolor possimus sint laborum. Voluptates sint reprehenderit quod quod.",
+     "id": "5"
+    },
+    {
+     "author": "Jerry Pfannerstill III",
+     "title": "Practical Wooden Car",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Atque mollitia fuga veniam ipsum quibusdam veritatis ea. Eos voluptatibus praesentium. Rerum quidem mollitia.",
+     "id": "8"
+    },
+    {
+     "author": "Diane Cole",
+     "title": "Rustic Metal Tuna",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Nobis at velit. Exercitationem dolor ipsam voluptatem tempore necessitatibus. Necessitatibus dolore ut et optio sunt commodi. Eum magni magnam aut perspiciatis veritatis. Neque esse porro repellat possimus odio nemo quos corrupti. Temporibus labore iste expedita enim asperiores repellat neque sint.",
+     "id": "9"
+    },
+    {
+     "author": "Claudia Heathcote",
+     "title": "Sleek Frozen Tuna",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Aperiam similique dicta vel tempore. Veritatis suscipit saepe ex ipsam tenetur est possimus alias. Similique consequuntur quam vero nulla laborum impedit vel autem. Ipsa delectus ex possimus impedit. Accusamus suscipit facere suscipit ut veritatis qui. Voluptatum id laborum ipsam nulla suscipit iure illum voluptas.",
+     "id": "11"
+    },
+    {
+     "author": "Holly Medhurst",
+     "title": "Incredible Soft Computer",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Dignissimos totam harum odio. Optio adipisci soluta inventore similique. Soluta labore voluptatem voluptatibus sapiente qui culpa nisi. Eum ad laudantium quia praesentium illo magni provident adipisci.",
+     "id": "14"
+    },
+    {
+     "author": "Leon Cremin",
+     "title": "Oriental Wooden Keyboard",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Delectus similique saepe maxime eos ut impedit. Occaecati libero ut. Sunt sapiente delectus et earum optio illum suscipit. Voluptate dolor pariatur.",
+     "id": "16"
+    },
+    {
+     "author": "Adam Mosciski",
+     "title": "Handmade Soft Gloves",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Ex dolores veniam id. Quas nostrum excepturi. Expedita reprehenderit quae eaque dicta. Nihil eos repellendus molestiae commodi.",
+     "id": "17"
+    },
+    {
+     "author": "Babbo Natale",
+     "title": "Pinguini",
+     "cover": "https://eidec2hct28.exactdn.com/uploads/Original_WW223791-scaled.jpg?strip=all&lossy=1&ssl=1",
+     "description": "la storia dei pinguini",
+     "id": "18"
+    },
+    {
+     "author": "Flora Stehr",
+     "title": "Unbranded Plastic Tuna",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Ratione veritatis sint quasi magni recusandae libero est ratione unde. Aut deserunt ad rem id in deleniti nobis. Odit dolorem sequi modi doloremque saepe quae. Repellat tempore aspernatur soluta nihil impedit impedit ipsa veniam rem.",
+     "id": "19"
+    },
+    {
+     "author": "Wilfred Okuneva",
+     "title": "Intelligent Soft Mouse",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Eveniet eveniet facilis natus ipsum corporis. Sed mollitia nihil vitae velit. Voluptas magni voluptate explicabo ratione quasi facere voluptates minus eaque. Minima quidem rem nesciunt aut sunt molestias. A perferendis animi vero rerum perferendis corporis debitis soluta voluptate.",
+     "id": "20"
+    },
+    {
+     "author": "Vera Cummings",
+     "title": "Elegant Soft Pizza",
+     "cover": "https://loremflickr.com/640/480/abstract",
+     "description": "Asperiores inventore consequuntur. Repellendus hic neque aperiam voluptatum quos. Voluptatum laborum itaque facere veniam delectus necessitatibus adipisci sit.",
+     "id": "21"
+    }
+   ]
+
+
   private allBooks: Book[] = [];
   constructor(private http: HttpClient) {
-    this.getBooks().subscribe(book => {
-      this.allBooks = book;
-     
-  })}
+    this.allBooksSubject.next(this.jsonBooks)  
+  }
 
   getBook(id: string): Observable<Book> {
-    return this.http.get<Book>(this.apiUrl + '/' + id);
+    const book = this.jsonBooks.find(b => b.id === id);
+    if (book) {
+      return new Observable<Book>(observer => {
+        observer.next(book);
+        observer.complete();
+      });
+    } else {
+      return throwError('Libro non trovato');
+    }
   }
 
   getBooks(): Observable<Book[]> {
-    return this.http.get(this.apiUrl)
-      .pipe(
-        map((response: any) => {
-          if (Array.isArray(response)) {
-            return response as Book[];
-          } else {
-            console.error('Invalid JSON response:', response);
-            return [];
-          }
-        }),
-        catchError(this.handleError)
-      );
+    return new Observable<Book[]>(observer => {
+      observer.next(this.jsonBooks);
+      observer.complete();
+    });
   }
+
   createBook(newBook: Book): Observable<Book> {
-    return this.http.post<Book>(this.apiUrl, newBook).pipe(catchError(this.handleError));
+    this.jsonBooks.push(newBook);
+    this.allBooksSubject.next(this.jsonBooks);
+    return new Observable<Book>(observer => {
+      observer.next(newBook);
+      observer.complete();
+    });
   }
 
   updateBook(id: string, updatedBook: Book): Observable<Book> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.put<Book>(url, updatedBook).pipe(catchError(this.handleError));
+    const index = this.jsonBooks.findIndex(b => b.id === id);
+    if (index !== -1) {
+      this.jsonBooks[index] = updatedBook;
+      this.allBooksSubject.next(this.jsonBooks);
+      return new Observable<Book>(observer => {
+        observer.next(updatedBook);
+        observer.complete();
+      });
+    } else {
+      return throwError('Libro non trovato');
+    }
   }
 
-  deleteBook(id: string): Observable<Book> {
-    const url = `${this.apiUrl}/${id}`;
-    console.log('cancellato')
-    return this.http.delete<Book>(url)
+  deleteBook(id: string): Observable<void> {
+    const index = this.jsonBooks.findIndex(b => b.id === id);
+    if (index !== -1) {
+      this.jsonBooks.splice(index, 1);
+      this.allBooksSubject.next(this.jsonBooks);
+      return new Observable<void>(observer => {
+        observer.next();
+        observer.complete();
+      });
+    } else {
+      return throwError('Libro non trovato');
+    }
   }
+
 
   private handleError(error: any): Observable<never> {
     console.error('Errore durante la richiesta HTTP:', error);
     return throwError('Si è verificato un errore durante la richiesta. Riprova più tardi.');
   }
+  
+
+  searchBooks(searchTerm: string): void {
+    const filteredBooks = this.jsonBooks.filter(book =>
+      book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    this.allBooksSubject.next(filteredBooks);
+  }
+  
 }

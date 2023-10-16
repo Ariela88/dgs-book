@@ -1,30 +1,56 @@
 
-<div class="table-container"> 
- 
+<div class="table-container">
+    
+        <div class="search-row">
+            <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input">
+               <button class="search-button" (click)="onSearch()">{{showMainTable? 'Cerca' : 'Indietro'}}</button> 
+           </div>
+    
+    <table *ngIf="showMainTable">
+        
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>author</th>
+                <th>title</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td [routerLink]="['/editor', book.id]">
+                    {{book.id}}
 
-<table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>author</th>
-            <th>title</th>
-            <th> </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let book of books">
-            <td [routerLink]="['/editor', book.id]">
-                {{book.id}}
+                </td>
+                <td [routerLink]="['/editor', book.id]">{{ book.author }}</td>
+                <td [routerLink]="['/editor', book.id]">{{ book.title }}</td>
+                <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon> </td>
+            </tr>
 
-            </td>
-            <td [routerLink]="['/editor', book.id]">{{ book.author }}</td>
-            <td [routerLink]="['/editor', book.id]">{{ book.title }}</td>
-            <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon >delete</mat-icon> </td>
-        </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    <table *ngIf="showSearchTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>author</th>
+                <th>title</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of bookServ.allBooks$ | async">
+                <td [routerLink]="['/editor', book.id]">
+                    {{book.id}}
+
+                </td>
+                <td [routerLink]="['/editor', book.id]">{{ book.author }}</td>
+                <td [routerLink]="['/editor', book.id]">{{ book.title }}</td>
+                <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon> </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
 </div>
-
-
-
-

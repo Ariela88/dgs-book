@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon> menu </mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="add">Aggiungi un libro </button>
+      <button mat-menu-item routerLink="home">Vai alla lista Completa </button>
+    </mat-menu>
+    <span routerLink="home" class="title" >Libreria <span class="brown"> Online </span></span>
+    <span class="example-spacer"></span>
+    
+    
+    
+  </mat-toolbar>

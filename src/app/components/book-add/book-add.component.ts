@@ -36,16 +36,22 @@ isEditing = false
     this.bookForm = this.formBuilder.group({
       author: ['', Validators.required],
       title: ['', Validators.required],
+      cover: [''],
+      description: [''],
     });
   }
+
   cancelEditing(): void {
     this.resetFormAndExitEditMode();
   }
+  
   resetFormAndExitEditMode(): void {
     this.bookForm.reset({
       id: '',
       author: '',
-      title: ''
+      title: '',
+      dover: '',
+      description: ''
     });
     this.isEditing = true;
   }

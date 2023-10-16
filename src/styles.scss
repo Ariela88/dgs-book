@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Norican&family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
 html, body { height: 100%; 
-cursor: pointer;}
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+button,a{cursor: pointer;}
 mat-toolbar{
     background-color: burlywood !important;
   
     margin-bottom: 40px;
     height: 60px;
 }
+
+
 
 a{
     text-decoration: none;

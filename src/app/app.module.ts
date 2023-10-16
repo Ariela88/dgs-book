@@ -14,8 +14,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import { BookAddComponent } from './components/book-add/book-add.component';
-
+import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { HeaderComponent } from './components/header/header.component';
+
 
 
 @NgModule({
@@ -24,7 +28,9 @@ import {MatTableModule} from '@angular/material/table';
     HomeLibraryComponent,
     BookListComponent,
     BookEditorComponent,
-    BookAddComponent
+    BookAddComponent,
+    HeaderComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,10 @@ import {MatTableModule} from '@angular/material/table';
     MatCardModule,
     MatMenuModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

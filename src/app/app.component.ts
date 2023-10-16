@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { BookServiceService } from './services/book-service.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,4 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'dgs-book';
 
-  constructor(private router: Router) { }
-
- 
 }
