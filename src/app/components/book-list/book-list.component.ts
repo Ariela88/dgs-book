@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book-service.service';
@@ -57,6 +57,18 @@ export class BookListComponent implements OnInit {
       }
     );
   }
+
+  sortByTitle(property: string): void {
+    this.books.sort((a, b) => a.title.localeCompare (b.title)
+     
+    );
+  }
+  sortByAuthor(property: string): void {
+    this.books.sort((a, b) => a.author.localeCompare (b.author)
+     
+    );
+  }
+  
 
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {

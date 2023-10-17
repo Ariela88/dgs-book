@@ -1,0 +1,11 @@
+
+<div *ngIf="favourites">
+    <app-book-editor *ngFor="let book of favourites" [book]="book"></app-book-editor>
+  </div>
+  
+  <div *ngFor="let book of favourites">
+    <app-book-editor [book]="book" [isFavourite]="true" 
+      ></app-book-editor>
+  </div>
+
+  

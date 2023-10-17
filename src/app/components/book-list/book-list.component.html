@@ -5,10 +5,15 @@
             <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input" *ngIf="showSearchInput">
                <button class="search-button" (click)="onSearch()">{{showMainTable? 'Cerca' : 'Indietro'}}</button> 
            </div>
-    
+           <div class="sort-container">
+           <button (click)="sortByAuthor('author')">Ordina per Autore</button>
+           <button (click)="sortByTitle('title')">Ordina per titolo</button> 
+        </div>
     <table *ngIf="showMainTable">
         
         <thead>
+           
+
             <tr>
                 <th>ID</th>
                 <th>author</th>

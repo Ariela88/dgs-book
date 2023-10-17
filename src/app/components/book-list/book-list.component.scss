@@ -17,6 +17,22 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    gap: 24px;
+}
+
+.sort-container{
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    justify-content: center;
+}
+
+.sort-container button{
+    border:none;
+    border-radius: 20px;
+    height: 40px;
+    background-color: #f7c258;
+    width: 100px;
 }
 
 table {

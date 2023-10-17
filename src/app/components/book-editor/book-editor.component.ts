@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
@@ -11,37 +11,23 @@ import { BookStorageService } from 'src/app/services/book-storage.service';
   styleUrls: ['./book-editor.component.scss'],
 })
 export class BookEditorComponent implements OnInit {
-  editedBook: Book = {
-    id: '',
-    author: '',
-    title: '',
-    cover: '',
-    description: '',
-  };
   bookForm!: FormGroup;
   isEditing = false;
 
-  allBooks: Book[] = [];
+  @Input() isFavourite: boolean = false;
+  @Input() book!: Book;
 
   constructor(
     private bookServ: BookServiceService,
     private router: Router,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef,
     private formBuilder: FormBuilder,
-    private bookStorageService: BookStorageService
+    public bookStorageService: BookStorageService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.bookForm = this.formBuilder.group({
-      title: [''],
-      author: [''],
-      id: [''],
-      cover: [''],
-      description: [''],
-    });
-
+    
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.bookServ.getBook(id).subscribe(
@@ -59,6 +45,7 @@ export class BookEditorComponent implements OnInit {
     }
   }
 
+ 
   private initForm(): void {
     this.bookForm = this.formBuilder.group({
       id: [''],
@@ -66,9 +53,14 @@ export class BookEditorComponent implements OnInit {
       title: ['', Validators.required],
       cover: [''],
       description: [''],
+      isFavourite: false,
     });
   }
 
+  isFavourites(book:Book){
+    this.bookStorageService.savebook(book)
+  }
+  
   startEditing(): void {
     this.isEditing = true;
   }
@@ -89,7 +81,6 @@ export class BookEditorComponent implements OnInit {
       } else {
         this.bookServ.updateBook(updatedBook.id, updatedBook).subscribe(
           (response) => {
-           
             this.resetFormAndExitEditMode();
             this.router.navigateByUrl('/home');
           },
@@ -101,14 +92,6 @@ export class BookEditorComponent implements OnInit {
     } else {
       console.error('Il form non è valido. Controlla i dati del libro.');
     }
-  }
-
-  cancelEditing(): void {
-    this.bookForm.patchValue(this.editedBook);
-    this.isEditing = false;
-
-   
-    this.router.navigateByUrl(`/home`);
   }
 
   private resetFormAndExitEditMode(): void {

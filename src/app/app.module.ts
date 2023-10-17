@@ -20,6 +20,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from './components/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FavouritesComponent } from './components/favourites/favourites.component';
 
 
 
@@ -32,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BookEditorComponent,
     BookAddComponent,
     HeaderComponent,
+    FavouritesComponent,
   
   ],
   imports: [

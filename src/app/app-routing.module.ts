@@ -4,6 +4,7 @@ import { HomeLibraryComponent } from './components/home-library/home-library.com
 import { BookListComponent } from './components/book-list/book-list.component';
 import { BookEditorComponent } from './components/book-editor/book-editor.component';
 import { BookAddComponent } from './components/book-add/book-add.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
 
 
 
@@ -14,6 +15,7 @@ const routes: Routes = [
 {path: 'editor/:id', component: BookEditorComponent},
 {path: '', redirectTo: 'home',pathMatch:'full'},
 {path: 'add', component: BookAddComponent},
+{path: 'favourites', component: FavouritesComponent},
 
 ];
 

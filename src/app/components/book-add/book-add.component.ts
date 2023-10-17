@@ -17,6 +17,7 @@ export class BookAddComponent {
     title: '',
     cover: '',
     description: '',
+    isFavourite:false
   };
   bookForm!: FormGroup;
   isEditing = false;
