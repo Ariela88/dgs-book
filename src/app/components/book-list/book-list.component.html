@@ -1,8 +1,8 @@
 
 <div class="table-container">
     
-        <div class="search-row">
-            <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input">
+        <div class="search-row" >
+            <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input" *ngIf="showSearchInput">
                <button class="search-button" (click)="onSearch()">{{showMainTable? 'Cerca' : 'Indietro'}}</button> 
            </div>
     

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book-service.service';
@@ -13,6 +13,7 @@ export class BookListComponent implements OnInit {
   searchTerm = '';
   showMainTable: boolean = true;
   showSearchTable: boolean = false;
+  showSearchInput: boolean = true;
 
   constructor(private route: ActivatedRoute, public bookServ: BookServiceService, private router: Router) {}
 
@@ -28,11 +29,13 @@ export class BookListComponent implements OnInit {
     console.log('Ricerca in corso con il termine:', this.searchTerm);
     this.bookServ.searchBooks(this.searchTerm);
     this.showMainTable = false; 
-    this.showSearchTable = true; }
+    this.showSearchTable = true;
+    this.showSearchInput = false }
     else{console.log('Tornando alla tabella principale.');
     this.router.navigateByUrl('/home');
     this.showMainTable = true;
     this.showSearchTable = false;
+    this.showSearchInput = true
     }
   }
 
@@ -53,6 +56,15 @@ export class BookListComponent implements OnInit {
         console.error('Errore durante l\'eliminazione del libro:', error);
       }
     );
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    // Verifica se il tasto premuto è il tasto "Invio" (codice 13)
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      // Chiama il metodo onButtonClick() quando il tasto "Invio" viene premuto
+      this.onSearch();
+    }
   }
   
 }
