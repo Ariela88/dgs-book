@@ -89,7 +89,7 @@ export class BookEditorComponent implements OnInit {
       } else {
         this.bookServ.updateBook(updatedBook.id, updatedBook).subscribe(
           (response) => {
-            console.log('Libro aggiornato con successo:', response);
+           
             this.resetFormAndExitEditMode();
             this.router.navigateByUrl('/home');
           },

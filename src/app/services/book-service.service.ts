@@ -9,11 +9,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BookServiceService {
 
-  private allBooksSubject = new BehaviorSubject<Book[]>([]);
+allBooksSubject = new BehaviorSubject<Book[]>([]);
+allBooks: Book[] = [];
+  
 allBooks$ = this.allBooksSubject.asObservable();
  
-  //readonly apiUrl = 'https://651a7a94340309952f0d59cb.mockapi.io/book';
-  jsonBooks:Book[] = [
+  
+jsonBooks:Book[] = [
     {
      "author": "Merle Blanda",
      "title": "Handcrafted Granite Bacon",
@@ -94,10 +96,8 @@ allBooks$ = this.allBooksSubject.asObservable();
    ]
 
 
-  private allBooks: Book[] = [];
-  constructor(private http: HttpClient) {
-    this.allBooksSubject.next(this.jsonBooks)  
-  }
+
+  constructor(private http: HttpClient) {this.allBooksSubject.next(this.jsonBooks)}
 
   getBook(id: string): Observable<Book> {
     const book = this.jsonBooks.find(b => b.id === id);
@@ -153,12 +153,6 @@ allBooks$ = this.allBooksSubject.asObservable();
     } else {
       return throwError('Libro non trovato');
     }
-  }
-
-
-  private handleError(error: any): Observable<never> {
-    console.error('Errore durante la richiesta HTTP:', error);
-    return throwError('Si è verificato un errore durante la richiesta. Riprova più tardi.');
   }
   
 

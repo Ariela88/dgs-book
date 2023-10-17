@@ -5,6 +5,7 @@ import { Book } from '../model/book';
   providedIn: 'root',
 })
 export class BookStorageService {
+  
   private localStorageKey = 'edited';
 
   constructor() {}

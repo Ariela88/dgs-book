@@ -19,6 +19,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from './components/header/header.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -46,7 +48,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatTableModule,
     FormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

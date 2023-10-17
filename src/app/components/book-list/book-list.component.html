@@ -16,7 +16,7 @@
                 <th> </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-body">
             <tr *ngFor="let book of books">
                 <td [routerLink]="['/editor', book.id]">
                     {{book.id}}

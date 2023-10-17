@@ -8,31 +8,31 @@ import { BookStorageService } from 'src/app/services/book-storage.service';
 @Component({
   selector: 'app-book-add',
   templateUrl: './book-add.component.html',
-  styleUrls: ['./book-add.component.scss']
+  styleUrls: ['./book-add.component.scss'],
 })
 export class BookAddComponent {
   newBook: Book = {
     id: '',
     author: '',
     title: '',
-    cover:'',
-    description:''
+    cover: '',
+    description: '',
   };
   bookForm!: FormGroup;
-isEditing = false
+  isEditing = false;
   constructor(
     private formBuilder: FormBuilder,
     private bookServ: BookServiceService,
     private bookStorageService: BookStorageService,
-    private route:Router
+    private route: Router
   ) {}
 
   ngOnInit(): void {
-    console.log('book')
+  
     this.initForm();
   }
 
- initForm(): void {
+  initForm(): void {
     this.bookForm = this.formBuilder.group({
       author: ['', Validators.required],
       title: ['', Validators.required],
@@ -41,29 +41,14 @@ isEditing = false
     });
   }
 
-  cancelEditing(): void {
-    this.resetFormAndExitEditMode();
-  }
-  
-  resetFormAndExitEditMode(): void {
-    this.bookForm.reset({
-      id: '',
-      author: '',
-      title: '',
-      dover: '',
-      description: ''
-    });
-    this.isEditing = true;
-  }
   saveNewBook(): void {
     if (this.bookForm.valid) {
       const newBook: Book = this.bookForm.value;
       this.bookServ.createBook(newBook).subscribe(
         (response) => {
-          
           this.bookStorageService.addBookToLocalStorage(response);
           this.bookForm.reset();
-          this.route.navigateByUrl('/home')
+          this.route.navigateByUrl('/home');
         },
         (error) => {
           console.error('Errore durante la creazione del libro:', error);

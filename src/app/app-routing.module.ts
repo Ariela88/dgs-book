@@ -11,11 +11,9 @@ const routes: Routes = [
 
 {path: 'home', component: HomeLibraryComponent},
 {path: 'list', component: BookListComponent},
-{ path: 'editor/:id', component: BookEditorComponent },
+{path: 'editor/:id', component: BookEditorComponent},
 {path: '', redirectTo: 'home',pathMatch:'full'},
-{ path: 'add', component: BookAddComponent },
-
-
+{path: 'add', component: BookAddComponent},
 
 ];
 
