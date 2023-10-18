@@ -75,3 +75,10 @@ button {
 textarea {
     width: 100%;
 }
+
+@media (max-width:500px){
+
+    .form-container{
+        width: auto;
+    }
+}

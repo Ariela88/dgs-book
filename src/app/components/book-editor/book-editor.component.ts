@@ -1,19 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
-import { BookServiceService } from 'src/app/services/book-service.service';
+import { BookServiceService } from 'src/app/services/book.service';
 import { BookStorageService } from 'src/app/services/book-storage.service';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-book-editor',
+  standalone: true,
+  imports: [CommonModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+  ],
   templateUrl: './book-editor.component.html',
   styleUrls: ['./book-editor.component.scss'],
 })
 export class BookEditorComponent implements OnInit {
   bookForm!: FormGroup;
   isEditing = false;
-
+  bookId!: string 
   constructor(
     private bookServ: BookServiceService,
     private router: Router,
@@ -25,14 +35,17 @@ export class BookEditorComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
 
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.bookServ.getBook(id).subscribe(
+    
+    this.bookId = this.route.snapshot.paramMap.get('id') ?? '';
+    if (this.bookId) {
+      this.isEditing = true;
+     
+      this.bookServ.getBook(this.bookId).subscribe(
         (book) => {
           if (book) {
             this.bookForm.patchValue(book);
           } else {
-            console.error(`Nessun libro trovato con ID: ${id}`);
+            console.error(`Nessun libro trovato con ID: ${this.bookId}`);
           }
         },
         (error) => {
@@ -49,18 +62,17 @@ export class BookEditorComponent implements OnInit {
       title: ['', Validators.required],
       cover: [''],
       description: [''],
-      isFavourite: false,
+      isFavourite: [false],
     });
   }
 
   saveBookEdited(): void {
     if (this.bookForm.valid) {
-      let updatedBook: Book = this.bookForm.value;
-      if (!this.isEditing) {
-        this.bookServ.updateBook(updatedBook.id, updatedBook).subscribe(
+      const book: Book = this.bookForm.value;
+      if (this.isEditing) {
+      
+        this.bookServ.updateBook(this.bookId, book).subscribe(
           (response) => {
-            this.bookStorageService.updateBookInLocalStorage(updatedBook);
-            this.resetFormAndExitEditMode();
             this.router.navigateByUrl('/home');
           },
           (error) => {
@@ -68,17 +80,18 @@ export class BookEditorComponent implements OnInit {
           }
         );
       } else {
-        console.error('Il form non è valido. Controlla i dati del libro.');
+       
+        this.bookServ.createBook(book).subscribe(
+          (response) => {
+            this.router.navigateByUrl('/home');
+          },
+          (error) => {
+            console.error('Errore durante la creazione del libro:', error);
+          }
+        );
       }
+    } else {
+      console.error('Il form non è valido. Controlla i dati del libro.');
     }
-  }
-
-  private resetFormAndExitEditMode(): void {
-    this.bookForm.reset({
-      id: '',
-      author: '',
-      title: '',
-    });
-    this.isEditing = false;
   }
 }

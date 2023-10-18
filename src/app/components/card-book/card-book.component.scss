@@ -40,3 +40,19 @@ button {
     background: none !important;
     border: none;
 }
+
+
+@media (max-width:500px){
+
+    .card{
+        width: auto;
+        height: auto;
+        margin:0;
+padding:0
+    }
+
+    .card-container{
+        margin: 24px 0;
+        padding: 0;
+    }
+}

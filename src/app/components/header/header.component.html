@@ -1,12 +1,12 @@
 <mat-toolbar color="primary">
   <button mat-button [matMenuTriggerFor]="menu"><mat-icon> menu </mat-icon></button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="add">Aggiungi un libro </button>
+    <button mat-menu-item routerLink="editor">Aggiungi un libro </button>
     <button mat-menu-item routerLink="home">Vai alla lista Completa </button>
   </mat-menu>
   <span class="example-spacer"></span>
-  <span routerLink="home" class="title">...Libreria <span class="brown"> Online... </span></span>
+  <span routerLink="home" class="title">...LibrarY<span class="brown">our... </span></span>
   <span class="example-spacer"></span>
-  <button mat-button routerLink="add"><mat-icon> library_add </mat-icon></button>
+  <button mat-button routerLink="editor"><mat-icon> library_add </mat-icon></button>
   <button mat-button routerLink="favourites"><mat-icon> favorite </mat-icon></button>
 </mat-toolbar>

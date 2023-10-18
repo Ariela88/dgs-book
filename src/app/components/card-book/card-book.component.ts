@@ -1,11 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Route, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
-import { BookServiceService } from 'src/app/services/book-service.service';
+import { BookServiceService } from 'src/app/services/book.service';
 import { BookStorageService } from 'src/app/services/book-storage.service';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
   selector: 'app-card-book',
+  standalone: true,
+  imports: [CommonModule,MaterialModule],
   templateUrl: './card-book.component.html',
   styleUrls: ['./card-book.component.scss'],
 })

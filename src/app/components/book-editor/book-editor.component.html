@@ -18,10 +18,9 @@
         </div>
         <div class="button-container">
             <button mat-button (click)="saveBookEdited()">
-                {{ isEditing ? 'Aggiorna Libro' : 'Salva Libro' }}
+                {{ isEditing ? 'Aggiorna' : 'Aggiungi' }}
             </button>
-
-            <button mat-button *ngIf="isEditing" routerLink="/home">Annulla</button>
+             <button mat-button *ngIf="isEditing" routerLink="/home">Annulla</button>
         </div>
     </form>
 </div>
