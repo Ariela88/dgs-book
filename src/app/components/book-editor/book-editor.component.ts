@@ -1,22 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
 import { BookStorageService } from 'src/app/services/book-storage.service';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from 'src/app/material/material.module';
-import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-book-editor',
-  standalone: true,
-  imports: [CommonModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-
-  ],
+  
   templateUrl: './book-editor.component.html',
   styleUrls: ['./book-editor.component.scss'],
 })

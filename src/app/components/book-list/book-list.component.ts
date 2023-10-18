@@ -1,15 +1,14 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MaterialModule } from 'src/app/material/material.module';
+
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
-import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-book-list',
-  standalone: true,
-  imports: [CommonModule,MaterialModule,FormsModule],
+
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
 })

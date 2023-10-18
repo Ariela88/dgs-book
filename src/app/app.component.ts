@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from './components/header/header.component';
+
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 })
 export class AppComponent {
 
-  constructor(private header:HeaderComponent){}
+  constructor(){}
   title = 'dgs-book';
 
 }
