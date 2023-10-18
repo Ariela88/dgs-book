@@ -1,9 +1,15 @@
 .title {
-  font-family: 'Goudy Bookletter 1911', serif;
-  font-size: 50px;
+  padding-top:24px ;
+  
+  font-family: 'La Belle Aurore', cursive;
+  font-size: 60px;
+  z-index: 999;
 
   cursor: pointer;
 
+}
+.middle-brown{
+  text-shadow: -1px 0 #6b2e00, 0 1px #ffffff, 1px 0 #6b2e00, 0 -1px #ffffff
 }
 
 .example-spacer {

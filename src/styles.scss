@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Norican&family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Goudy+Bookletter+1911&family=La+Belle+Aurore&display=swap');
 
 html,
 body {
@@ -31,6 +32,18 @@ a {
 
 mat-card {
     background-color: rgb(237, 208, 169) !important;
+}
+
+mat-select,mat-label,mat-form-field{
+    background-color: burlywood !important;
+    color: white !important;
+}
+.mat-mdc-form-field-subscript-wrapper{
+    height: 4px;
+}
+
+.mat-mdc-text-field-wrapper{
+    background-color: burlywood !important;
 }
 
 .mat-typography {
