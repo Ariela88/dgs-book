@@ -13,11 +13,13 @@ export class CardBookComponent implements OnInit{
 
   @Input() isFavourite: boolean = false;
   @Input() book?: Book;
+  @Input() isEditing:boolean = false
 
   constructor(
     private bookServ: BookServiceService,
     private route: ActivatedRoute,
     public storage:BookStorageService,
+    public router:Router,
     
   
   ) {}
@@ -32,5 +34,10 @@ export class CardBookComponent implements OnInit{
           });
         }
       });
+  }
+
+  startEditing(id:string): void {
+    this.isEditing = true;
+    this.router.navigateByUrl('editor/' + id)
   }
 }

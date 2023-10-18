@@ -24,6 +24,6 @@ export class FavouritesComponent implements OnInit {
   
 
   removeFromFavourites(book: Book): void {
-    this.bookStorageService.removeBook(book);
+    this.bookStorageService.removeBookToFavourites(book);
   }
 }

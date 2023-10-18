@@ -1,6 +1,6 @@
 
 
-<div *ngIf="isEditing" class="editor-container">
+<div *ngIf="[isEditing]" class="editor-container">
     <form [formGroup]="bookForm" class="form-container" >
         <div class="input-container">
             <label for="author">Autore:</label>
@@ -19,7 +19,7 @@
             <textarea  id="description" formControlName="description"></textarea>
         </div>
         <div class="button-container">
-            <button  mat-button (click)="saveBook()">
+            <button  mat-button (click)="saveBookEdited()">
                 {{ isEditing ? 'Aggiorna Libro' : 'Salva Libro' }}
             </button>
             

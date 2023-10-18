@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, distinctUntilChanged, map } from 'rxjs/operators';
 import { Book } from '../model/book';
 import { HttpClient } from '@angular/common/http';
+import { BookStorageService } from './book-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,8 @@ allBooksSubject = new BehaviorSubject<Book[]>([]);
 allBooks: Book[] = [];
 arrayClone:Book[] = []  
 allBooks$ = this.allBooksSubject.asObservable();
+
+
  
   
 jsonBooks:Book[] = [
@@ -108,7 +111,7 @@ jsonBooks:Book[] = [
 
 
 
-  constructor(private http: HttpClient) {this.allBooksSubject.next(this.jsonBooks)}
+  constructor(private http: HttpClient, private storage:BookStorageService) {this.allBooksSubject.next(this.jsonBooks)}
 
   getBook(id: string): Observable<Book> {
     const book = this.jsonBooks.find(b => b.id === id);
@@ -148,7 +151,9 @@ jsonBooks:Book[] = [
     const index = this.jsonBooks.findIndex(b => b.id === id);
     if (index !== -1) {
       this.jsonBooks[index] = updatedBook;
-      this.allBooksSubject.next(this.jsonBooks);
+      this.allBooksSubject.next([...this.jsonBooks]); 
+  
+      
       return new Observable<Book>(observer => {
         observer.next(updatedBook);
         observer.complete();
@@ -157,6 +162,7 @@ jsonBooks:Book[] = [
       return throwError('Libro non trovato');
     }
   }
+  
 
   deleteBook(id: string): Observable<void> {
     const index = this.jsonBooks.findIndex(b => b.id === id);
@@ -173,14 +179,8 @@ jsonBooks:Book[] = [
   }
   
 
-  // searchBooks(searchTerm: string): void {
-  //   const filteredBooks = this.jsonBooks.filter(book =>
-  //     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     book.author.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-  //   this.allBooksSubject.next(filteredBooks);
-  // }  ricerca senza clone
 
+  //Funzione finita e corretta
   searchBooks(searchTerm: string): void {
     const filteredBooks = this.jsonBooks.filter(book =>
       book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
