@@ -1,6 +1,4 @@
-.example-card {
-    max-width: 400px;
-}
+
 
 body{height: 100%;}
 
@@ -61,19 +59,7 @@ input {
 }
 
 
-.card {
 
-    height: 500px;
-    width: 500px;
-    border-radius: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    padding: 0;
-
-}
 
 button {
     color: rgb(0, 0, 0) !important;
@@ -92,11 +78,7 @@ button {
     width: 80%;
 }
 
-img{
-    width: 70%;
-    object-fit: cover;
-    border-radius: 40px;
-}
+
 
 textarea{
     width: 100%;

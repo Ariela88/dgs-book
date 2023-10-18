@@ -1,30 +1,4 @@
-<div class="book-container" *ngIf="!isEditing">
 
-
-    <mat-card class="card">
-        <mat-card-header>
-
-            <mat-card-title>{{ bookForm.get('title')?.value }}</mat-card-title>
-            <mat-card-subtitle>{{ bookForm.get('author')?.value }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="{{ bookForm.get('cover')?.value }}" alt="Copertina del libero {{bookForm.get('title')}}">
-        <mat-card-content> 
-            {{bookForm.get('description')?.value}}
-        </mat-card-content>
-
-        <mat-card-actions *ngIf="bookForm">
-                        <button mat-button (click)="startEditing()">Modifica i Dati</button>
-            <button (click)="bookStorageService.toggleFavourites(book)">
-                <mat-icon *ngIf="!bookStorageService.isFavourite(book)">favorite</mat-icon>
-                <mat-icon *ngIf="bookStorageService.isFavourite(book)">heart_broken</mat-icon>
-              </button>
-
-        </mat-card-actions>
-    </mat-card>
-
-
-
-</div>
 
 <div *ngIf="isEditing" class="editor-container">
     <form [formGroup]="bookForm" class="form-container" >

@@ -14,8 +14,7 @@ export class BookEditorComponent implements OnInit {
   bookForm!: FormGroup;
   isEditing = false;
 
-  @Input() isFavourite: boolean = false;
-  @Input() book!: Book;
+
 
   constructor(
     private bookServ: BookServiceService,
@@ -27,7 +26,7 @@ export class BookEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    
+
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.bookServ.getBook(id).subscribe(
@@ -45,7 +44,6 @@ export class BookEditorComponent implements OnInit {
     }
   }
 
- 
   private initForm(): void {
     this.bookForm = this.formBuilder.group({
       id: [''],
@@ -57,28 +55,28 @@ export class BookEditorComponent implements OnInit {
     });
   }
 
-  isFavourites(book:Book){
-    this.bookStorageService.savebook(book)
-  }
   
+
   startEditing(): void {
     this.isEditing = true;
   }
 
   saveBook(): void {
     if (this.bookForm.valid) {
-      const updatedBook: Book = this.bookForm.value;
+      let updatedBook: Book = this.bookForm.value;
       if (!this.isEditing) {
-        this.bookServ.createBook(updatedBook).subscribe(
-          (response) => {
-            this.bookStorageService.addBookToLocalStorage(response);
+        this.bookServ.createBook(updatedBook)
+        //.subscribe(
+          // (response) => {
+          //   this.bookStorageService.addBookToLocalStorage(response);
+            
             this.router.navigateByUrl('/home');
-          },
-          (error) => {
-            console.error('Errore durante la creazione del libro:', error);
+          
           }
-        );
-      } else {
+        
+      
+      
+      else {
         this.bookServ.updateBook(updatedBook.id, updatedBook).subscribe(
           (response) => {
             this.resetFormAndExitEditMode();

@@ -10,57 +10,69 @@ export class BookStorageService {
   private localStorageKey = 'favourites';
   private localStorageKeyDelete = 'edited';
   
-  favouritesSubject = new BehaviorSubject<Book[]>([]);
+  favouritesSubject = new BehaviorSubject<Book[]>(this.getBooksFromLocalStorage());
 
   constructor() {
-    if (localStorage.getItem('favourites')) {
+    if (localStorage.getItem(this.localStorageKey)) {
 
-      this.favouritesSubject.next(JSON.parse(localStorage.getItem('favourites')!))
+      this.favouritesSubject.next(JSON.parse(localStorage.getItem(this.localStorageKey)!))
     }
   }
-  
 
-  
-  
-
-  addBookToLocalStorage(response: Book): void {
-    const storedBooks = this.getBooksFromLocalStorage();
-    storedBooks.push(response);
-    localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
-  }
-
-  getBooksFromLocalStorage(): Book[] {
-    const storedBooks = localStorage.getItem(this.localStorageKeyDelete);
+  private getBooksFromLocalStorage(): Book[] {
+    const storedBooks = localStorage.getItem(this.localStorageKey);
     return storedBooks ? JSON.parse(storedBooks) : [];
   }
+  
+
+  
+  
+
+  // addBookToLocalStorage(response: Book): void {
+  //   const storedBooks = this.getBooksFromLocalStorage();
+  //   storedBooks.push(response);
+  //   localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
+  // }
+
+  // getBooksFromLocalStorage(): Book[] {
+  //   const storedBooks = localStorage.getItem(this.localStorageKeyDelete);
+  //   return storedBooks ? JSON.parse(storedBooks) : [];
+  // }
 
   savebook(book: Book) {
     book.isFavourite = true;
     const actualArray = this.favouritesSubject.value;
-    const newArray = [...actualArray, book];
-    console.log(newArray)
-    this.favouritesSubject.next(newArray);
-    localStorage.setItem('favourites', JSON.stringify(newArray));
-  }
-  
-  
-  updateBookInLocalStorage(updatedBook: Book): void {
-    const storedBooks = this.getBooksFromLocalStorage();
-    const index = storedBooks.findIndex((book) => book.id === updatedBook.id);
-    if (index !== -1) {
-      storedBooks[index] = updatedBook;
-      localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
+    if (Array.isArray(actualArray)) {
+      const newArray = [...actualArray, book];
+      this.favouritesSubject.next(newArray);
+      localStorage.setItem(this.localStorageKey, JSON.stringify(newArray));
+    } else {
+      // Se actualArray non è un array, crea un nuovo array con il libro
+      const newArray = [book];
+      this.favouritesSubject.next(newArray);
+      localStorage.setItem(this.localStorageKey, JSON.stringify(newArray));
     }
   }
+  
+  
+  
+  // updateBookInLocalStorage(updatedBook: Book): void {
+  //   const storedBooks = this.getBooksFromLocalStorage();
+  //   const index = storedBooks.findIndex((book) => book.id === updatedBook.id);
+  //   if (index !== -1) {
+  //     storedBooks[index] = updatedBook;
+  //     localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
+  //   }
+  // }
 
-  deleteBookFromLocalStorage(bookId: string): void {
-    const storedBooks = this.getBooksFromLocalStorage();
-    const index = storedBooks.findIndex((book) => book.id === bookId);
-    if (index !== -1) {
-      storedBooks.splice(index, 1);
-      localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
-    }
-  }
+  // deleteBookFromLocalStorage(bookId: string): void {
+  //   const storedBooks = this.getBooksFromLocalStorage();
+  //   const index = storedBooks.findIndex((book) => book.id === bookId);
+  //   if (index !== -1) {
+  //     storedBooks.splice(index, 1);
+  //     localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
+  //   }
+  // }
   removeBook(book: Book): void {
     const favourites = this.favouritesSubject.value;
     const updatedFavourites = favourites.filter((b) => b.id !== book.id);
@@ -79,10 +91,11 @@ export class BookStorageService {
 
 
   isFavourite(book: Book): boolean {
-    if (book && book.id) {
-     
-      return this.favouritesSubject.value.some((p) => p.id === book.id);
+    const favoritesArray = this.favouritesSubject.value;
+    if (Array.isArray(favoritesArray)) {
+      return favoritesArray.some((p) => p.id === book.id);
     }
     return false;
   }
+  
 }

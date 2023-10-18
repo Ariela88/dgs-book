@@ -11,7 +11,7 @@ export class BookServiceService {
 
 allBooksSubject = new BehaviorSubject<Book[]>([]);
 allBooks: Book[] = [];
-  
+arrayClone:Book[] = []  
 allBooks$ = this.allBooksSubject.asObservable();
  
   
@@ -173,12 +173,24 @@ jsonBooks:Book[] = [
   }
   
 
+  // searchBooks(searchTerm: string): void {
+  //   const filteredBooks = this.jsonBooks.filter(book =>
+  //     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //     book.author.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  //   this.allBooksSubject.next(filteredBooks);
+  // }  ricerca senza clone
+
   searchBooks(searchTerm: string): void {
     const filteredBooks = this.jsonBooks.filter(book =>
       book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       book.author.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    this.allBooksSubject.next(filteredBooks);
-  }
+
+    this.arrayClone = [...filteredBooks];
+    this.allBooksSubject.next(this.arrayClone);
+}
+
+
   
 }

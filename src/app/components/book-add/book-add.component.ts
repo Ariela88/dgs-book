@@ -47,7 +47,7 @@ export class BookAddComponent {
       const newBook: Book = this.bookForm.value;
       this.bookServ.createBook(newBook).subscribe(
         (response) => {
-          this.bookStorageService.addBookToLocalStorage(response);
+          //this.bookStorageService.addBookToLocalStorage(response);
           this.bookForm.reset();
           this.route.navigateByUrl('/home');
         },

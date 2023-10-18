@@ -1,0 +1,22 @@
+<mat-card class="card" *ngIf="book">
+    <mat-card-header>
+
+        <mat-card-title>{{ book.title}}</mat-card-title>
+        <mat-card-subtitle>{{ book.author}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{book.cover }}" alt="Copertina del libero">
+    <mat-card-content> 
+        {{book.description}}
+    </mat-card-content>
+
+    <mat-card-actions>
+                    <button mat-button routerLink="/editor">Modifica i Dati</button>
+        <button (click)="storage.toggleFavourites(book)">
+
+            {{book.isFavourite?'rimuovi':'salva'}}
+            <mat-icon *ngIf="!storage.isFavourite(book)">favorite</mat-icon>
+            <mat-icon *ngIf="storage.isFavourite(book)">heart_broken</mat-icon>
+          </button>
+
+    </mat-card-actions>
+</mat-card>

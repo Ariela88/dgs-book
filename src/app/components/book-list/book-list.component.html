@@ -1,61 +1,30 @@
-
 <div class="table-container">
-    
-        <div class="search-row" >
-            <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input" *ngIf="showSearchInput">
-               <button class="search-button" (click)="onSearch()">{{showMainTable? 'Cerca' : 'Indietro'}}</button> 
-           </div>
-           <div class="sort-container">
-           <button (click)="sortByAuthor('author')">Ordina per Autore</button>
-           <button (click)="sortByTitle('title')">Ordina per titolo</button> 
-        </div>
-    <table *ngIf="showMainTable">
-        
+    <div class="search-row">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input">
+        <button class="search-button" (click)="onSearch()">Cerca
+        </button>
+    </div>
+    <div class="sort-container">
+        <button (click)="sortByAuthor('author')">Ordina per Autore</button>
+        <button (click)="sortByTitle('title')">Ordina per titolo</button>
+    </div>
+    <table>
         <thead>
-           
-
             <tr>
                 <th>ID</th>
-                <th>author</th>
-                <th>title</th>
-                <th> </th>
+                <th>Author</th>
+                <th>Title</th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="table-body">
             <tr *ngFor="let book of books">
-                <td [routerLink]="['/editor', book.id]">
-                    {{book.id}}
+                <td (click)="navigateToBookDetails(book.id)">{{ book.id }}</td>
 
-                </td>
-                <td [routerLink]="['/editor', book.id]">{{ book.author }}</td>
-                <td [routerLink]="['/editor', book.id]">{{ book.title }}</td>
-                <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon> </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table *ngIf="showSearchTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>author</th>
-                <th>title</th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let book of bookServ.allBooks$ | async">
-                <td [routerLink]="['/editor', book.id]">
-                    {{book.id}}
-
-                </td>
-                <td [routerLink]="['/editor', book.id]">{{ book.author }}</td>
-                <td [routerLink]="['/editor', book.id]">{{ book.title }}</td>
-                <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon> </td>
-
+                <td (click)="navigateToBookDetails(book.id)">{{ book.author }}</td>
+                <td (click)="navigateToBookDetails(book.id)">{{ book.title }}</td>
+                <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon></td>
             </tr>
         </tbody>
     </table>
-
-
 </div>

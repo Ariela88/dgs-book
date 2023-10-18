@@ -21,6 +21,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from './components/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FavouritesComponent } from './components/favourites/favourites.component';
+import { CardBookComponent } from './components/card-book/card-book.component';
 
 
 
@@ -34,6 +35,7 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
     BookAddComponent,
     HeaderComponent,
     FavouritesComponent,
+    CardBookComponent,
   
   ],
   imports: [
