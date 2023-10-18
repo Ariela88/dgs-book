@@ -1,0 +1,13 @@
+.favourites-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    
+}
+
+app-card-book{
+    width: 300px !important; 
+    height:300px !important ;
+}

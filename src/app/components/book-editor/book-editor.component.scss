@@ -1,14 +1,13 @@
-
-
-body{height: 100%;}
+body {
+    height: 100%;
+}
 
 .book-container {
     width: 100%;
-  padding-top: 40px;
+    padding-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-  
 
 }
 
@@ -22,8 +21,7 @@ body{height: 100%;}
     align-items: center;
     background-color: rgb(237, 208, 169) !important;
     border-radius: 24px;
-    padding:24px
-
+    padding: 24px
 }
 
 .editor-container {
@@ -32,7 +30,6 @@ body{height: 100%;}
     flex-direction: column;
     padding-top: 40px;
     align-items: center;
-
     height: 100vh;
 }
 
@@ -58,9 +55,6 @@ input {
     height: 30px;
 }
 
-
-
-
 button {
     color: rgb(0, 0, 0) !important;
 }
@@ -74,12 +68,10 @@ button {
 
 }
 
-.input-container{
+.input-container {
     width: 80%;
 }
 
-
-
-textarea{
+textarea {
     width: 100%;
 }

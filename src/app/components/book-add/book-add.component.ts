@@ -17,7 +17,7 @@ export class BookAddComponent {
     title: '',
     cover: '',
     description: '',
-    isFavourite:false
+    isFavourite: false,
   };
   bookForm!: FormGroup;
   isEditing = false;
@@ -29,7 +29,6 @@ export class BookAddComponent {
   ) {}
 
   ngOnInit(): void {
-  
     this.initForm();
   }
 
@@ -47,7 +46,6 @@ export class BookAddComponent {
       const newBook: Book = this.bookForm.value;
       this.bookServ.createBook(newBook).subscribe(
         (response) => {
-          //this.bookStorageService.addBookToLocalStorage(response);
           this.bookForm.reset();
           this.route.navigateByUrl('/home');
         },

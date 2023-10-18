@@ -11,9 +11,7 @@ export class FavouritesComponent implements OnInit {
 
   favourites: Book[] = [];
 
-  constructor(private bookStorageService: BookStorageService) {
-   
-  }
+  constructor(private bookStorageService: BookStorageService) {}
 
   ngOnInit(): void {
     this.bookStorageService.favouritesSubject.subscribe((ArrayOfFavourites) => {

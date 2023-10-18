@@ -6,51 +6,35 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class BookStorageService {
-  
-  private localStorageKey = 'favourites';
-  private localStorageKeyDelete = 'edited';
-  
-  favouritesSubject = new BehaviorSubject<Book[]>(this.getBooksFromLocalStorage());
+  localStorageKey = 'favourites';
+  localStorageKeyDelete = 'edited';
+  favouritesSubject = new BehaviorSubject<Book[]>(
+    this.getBooksFromLocalStorage()
+  );
 
   constructor() {
     if (localStorage.getItem(this.localStorageKey)) {
-
-      this.favouritesSubject.next(JSON.parse(localStorage.getItem(this.localStorageKey)!))
+      this.favouritesSubject.next(
+        JSON.parse(localStorage.getItem(this.localStorageKey)!)
+      );
     }
   }
 
-  
-  addBookToLocalStorage(response: Book): void {
-    const storedBooks = this.getBooksFromLocalStorage();
-    storedBooks.push(response);
-    localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
-  }
-
-  
-  
-  
-  
   updateBookInLocalStorage(updatedBook: Book): void {
     const storedBooks = this.getBooksFromLocalStorage();
     const index = storedBooks.findIndex((book) => book.id === updatedBook.id);
     if (index !== -1) {
       storedBooks[index] = updatedBook;
-      localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
-    }
-  }
-
-  deleteBookFromLocalStorage(bookId: string): void {
-    const storedBooks = this.getBooksFromLocalStorage();
-    const index = storedBooks.findIndex((book) => book.id === bookId);
-    if (index !== -1) {
-      storedBooks.splice(index, 1);
-      localStorage.setItem(this.localStorageKeyDelete, JSON.stringify(storedBooks));
+      localStorage.setItem(
+        this.localStorageKeyDelete,
+        JSON.stringify(storedBooks)
+      );
     }
   }
 
   //Funzioni per il salvataggio dei preferiti
 
-  private getBooksFromLocalStorage(): Book[] {
+  getBooksFromLocalStorage(): Book[] {
     const storedBooks = localStorage.getItem(this.localStorageKey);
     return storedBooks ? JSON.parse(storedBooks) : [];
   }
@@ -63,7 +47,6 @@ export class BookStorageService {
       this.favouritesSubject.next(newArray);
       localStorage.setItem(this.localStorageKey, JSON.stringify(newArray));
     } else {
-     
       const newArray = [book];
       this.favouritesSubject.next(newArray);
       localStorage.setItem(this.localStorageKey, JSON.stringify(newArray));
@@ -74,20 +57,19 @@ export class BookStorageService {
     const favourites = this.favouritesSubject.value;
     const updatedFavourites = favourites.filter((b) => b.id !== book.id);
     this.favouritesSubject.next(updatedFavourites);
-    localStorage.setItem(this.localStorageKey, JSON.stringify(updatedFavourites));
+    localStorage.setItem(
+      this.localStorageKey,
+      JSON.stringify(updatedFavourites)
+    );
   }
-
-
 
   toggleFavourites(book: Book) {
     if (this.isFavourite(book)) {
-      this.removeBookToFavourites(book)
-
-    }else{
-      this.savebookInFavourites(book)
+      this.removeBookToFavourites(book);
+    } else {
+      this.savebookInFavourites(book);
     }
   }
-
 
   isFavourite(book: Book): boolean {
     const favoritesArray = this.favouritesSubject.value;
@@ -96,5 +78,4 @@ export class BookStorageService {
     }
     return false;
   }
-  
 }

@@ -9,8 +9,10 @@ import { BookServiceService } from 'src/app/services/book-service.service';
   styleUrls: ['./book-list.component.scss'],
 })
 export class BookListComponent implements OnInit {
+
   books: Book[] = [];
   searchTerm = '';
+  showBack:boolean = false
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class BookListComponent implements OnInit {
       this.bookServ.searchBooks(this.searchTerm);
       this.bookServ.allBooks$.subscribe((books) => {
         this.books = books;
+        this.showBack = true
       });
     } else {
       this.router.navigateByUrl('/home');
@@ -66,4 +69,15 @@ export class BookListComponent implements OnInit {
   navigateToBookDetails(id: string): void {
     this.router.navigateByUrl(`/book-card/${id}`);
   }
+
+  navigateToHome(): void {
+    this.router.navigateByUrl('/home').then(() => {
+      this.bookServ.getBooks().subscribe((books) => {
+        this.books = books;
+        this.showBack = false;
+      });
+    });
+  }
+  
+  
 }

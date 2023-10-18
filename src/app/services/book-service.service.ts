@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, distinctUntilChanged, map } from 'rxjs/operators';
 import { Book } from '../model/book';
 import { HttpClient } from '@angular/common/http';
 import { BookStorageService } from './book-storage.service';
@@ -11,13 +10,10 @@ import { BookStorageService } from './book-storage.service';
 export class BookServiceService {
 
 allBooksSubject = new BehaviorSubject<Book[]>([]);
-allBooks: Book[] = [];
 arrayClone:Book[] = []  
 allBooks$ = this.allBooksSubject.asObservable();
 
 
- 
-  
 jsonBooks:Book[] = [
     {
      "author": "Merle Blanda",
@@ -111,7 +107,14 @@ jsonBooks:Book[] = [
 
 
 
-  constructor(private http: HttpClient, private storage:BookStorageService) {this.allBooksSubject.next(this.jsonBooks)}
+  constructor(
+    private http: HttpClient, 
+    private storage:BookStorageService
+    ) 
+    {
+      this.allBooksSubject.next(this.jsonBooks)
+    }
+
 
   getBook(id: string): Observable<Book> {
     const book = this.jsonBooks.find(b => b.id === id);
@@ -125,6 +128,7 @@ jsonBooks:Book[] = [
     }
   }
 
+
   getBooks(): Observable<Book[]> {
     return new Observable<Book[]>(observer => {
       observer.next(this.jsonBooks);
@@ -133,12 +137,10 @@ jsonBooks:Book[] = [
   }
 
   createBook(newBook: Book): Observable<Book> {
-    
     const lastBook = this.jsonBooks[this.jsonBooks.length - 1];
     const lastId = lastBook ? parseInt(lastBook.id) : 0;
     newBook.id = (lastId + 1).toString();
     this.jsonBooks.push(newBook);
-    
     this.allBooksSubject.next(this.jsonBooks);
     return new Observable<Book>(observer => {
       observer.next(newBook);
@@ -152,9 +154,7 @@ jsonBooks:Book[] = [
     if (index !== -1) {
       this.jsonBooks[index] = updatedBook;
       this.allBooksSubject.next([...this.jsonBooks]); 
-  
-      
-      return new Observable<Book>(observer => {
+   return new Observable<Book>(observer => {
         observer.next(updatedBook);
         observer.complete();
       });

@@ -1,50 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Norican&family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap');
-html, body { height: 100vh; 
+
+html,
+body {
+    height: 100vh;
 
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-button,a{cursor: pointer;}
-mat-toolbar{
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+mat-toolbar {
     background-color: burlywood !important;
-  
     margin-bottom: 40px;
     height: 60px;
 }
 
-
-
-a{
+a {
     text-decoration: none;
     color: initial;
 }
 
-mat-card{
+mat-card {
     background-color: rgb(237, 208, 169) !important;
 }
 
-.mat-typography{
+.mat-typography {
     background-image: url(./assets/bg-book.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-   
+
 }
 
-input,textarea{
+input,
+textarea {
     outline: none;
     padding-left: 12px;
 }
-
-
-
-
-/* styles.scss o styles.css */
-:root {
-    --primary-color: #007bff; /* Colore principale del tuo tema */
-    --primary-color-dark: #0056b3; /* Colore scuro associato al tuo colore principale */
-    --primary-color-light: #66b3ff; /* Colore chiaro associato al tuo colore principale */
-  }
-  

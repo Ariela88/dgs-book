@@ -19,10 +19,7 @@ export class CardBookComponent implements OnInit{
     private bookServ: BookServiceService,
     private route: ActivatedRoute,
     public storage:BookStorageService,
-    public router:Router,
-    
-  
-  ) {}
+    public router:Router) {}
 
  
     ngOnInit(): void {

@@ -1,21 +1,20 @@
 <div class="add-container">
-  <div>
 
     <form class="form-container" [formGroup]="bookForm">
       <h3>Aggiungi un libro alla collezione: </h3>
-      <div  class="input-container">
+      <div class="input-container">
         <label for="author">Autore: </label>
         <input type="text" id="author" formControlName="author" />
       </div>
-      <div  class="input-container">
+      <div class="input-container">
         <label for="title">Titolo: </label>
         <input type="text" id="title" formControlName="title" />
       </div>
-      <div  class="input-container">
+      <div class="input-container">
         <label for="cover">Copertina: </label>
         <input type="text" id="cover" formControlName="cover" />
       </div>
-      <div  class="input-container">
+      <div class="input-container">
         <label for="description">Descrizione: </label>
         <textarea type="text" id="description" formControlName="description"></textarea>
       </div>
@@ -27,4 +26,3 @@
       </div>
     </form>
   </div>
-</div>

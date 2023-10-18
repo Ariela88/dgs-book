@@ -27,7 +27,7 @@ body{
     justify-content: center;
 }
 
-.sort-container button{
+.sort-container button, .back button{
     border:none;
     border-radius: 20px;
     height: 40px;
@@ -54,7 +54,7 @@ td {
 th {
     font-size: 34px;
     text-transform: capitalize;
-    background-color: khaki;
+    background-color: burlywood;
     font-family: 'Damion', cursive;
 }
 
@@ -91,7 +91,7 @@ input {
     padding-left: 16px;
 }
 
-.search-button {
+.search-button{
     border-radius: 0 20px 20px 0;
     border: none;
     background-color: #f7c258;

@@ -8,13 +8,16 @@
         <button (click)="sortByAuthor('author')">Ordina per Autore</button>
         <button (click)="sortByTitle('title')">Ordina per titolo</button>
     </div>
+    <div class="back" *ngIf="showBack">
+        <button (click)="navigateToHome()">Indietro</button>
+    </div>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Author</th>
                 <th>Title</th>
-                <th></th>
+                <th> </th>
             </tr>
         </thead>
         <tbody class="table-body">

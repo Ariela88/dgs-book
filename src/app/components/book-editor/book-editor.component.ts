@@ -14,8 +14,6 @@ export class BookEditorComponent implements OnInit {
   bookForm!: FormGroup;
   isEditing = false;
 
-
-
   constructor(
     private bookServ: BookServiceService,
     private router: Router,
@@ -55,18 +53,12 @@ export class BookEditorComponent implements OnInit {
     });
   }
 
-  
-
-  
-
   saveBookEdited(): void {
     if (this.bookForm.valid) {
       let updatedBook: Book = this.bookForm.value;
       if (!this.isEditing) {
-       
         this.bookServ.updateBook(updatedBook.id, updatedBook).subscribe(
           (response) => {
-   
             this.bookStorageService.updateBookInLocalStorage(updatedBook);
             this.resetFormAndExitEditMode();
             this.router.navigateByUrl('/home');
@@ -80,9 +72,6 @@ export class BookEditorComponent implements OnInit {
       }
     }
   }
-  
-  
-  
 
   private resetFormAndExitEditMode(): void {
     this.bookForm.reset({
