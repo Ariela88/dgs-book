@@ -6,13 +6,14 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { NgIf, NgFor } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material/material.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, NgIf, MaterialModule, NgFor],
+  imports: [ReactiveFormsModule, FormsModule, NgIf, MaterialModule, NgFor,CommonModule],
 })
 export class BookListComponent implements OnInit {
   books: Book[] = [];

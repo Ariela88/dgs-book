@@ -5,6 +5,7 @@ import { Book } from 'src/app/model/book';
 import { BookStorageService } from 'src/app/services/book-storage.service';
 import { CardBookComponent } from '../card-book/card-book.component';
 import { NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { NgFor } from '@angular/common';
     templateUrl: './favourites.component.html',
     styleUrls: ['./favourites.component.scss'],
     standalone: true,
-    imports: [NgFor, CardBookComponent,MaterialModule]
+    imports: [NgFor, CardBookComponent,MaterialModule,CommonModule]
 })
 export class FavouritesComponent implements OnInit {
 

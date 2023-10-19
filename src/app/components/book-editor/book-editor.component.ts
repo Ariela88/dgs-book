@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
@@ -8,27 +13,34 @@ import { NgIf } from '@angular/common';
 import { MaterialModule } from 'src/app/material/material/material.module';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
-    selector: 'app-book-editor',
-    templateUrl: './book-editor.component.html',
-    styleUrls: ['./book-editor.component.scss'],
-    standalone: true,
-    imports: [
-      CommonModule,
-        NgIf,
-        ReactiveFormsModule,
-        MaterialModule,
-        RouterLink,
-        
-    ],
+  selector: 'app-book-editor',
+  templateUrl: './book-editor.component.html',
+  styleUrls: ['./book-editor.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    NgIf,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterLink,
+  ],
 })
 export class BookEditorComponent implements OnInit {
   bookForm!: FormGroup;
   isEditing = false;
-  bookId!: string 
+  bookId!: string;
   isNewCategorySelected = false;
-  categories:string[]=['giallo','horror','avventura','storico','cucina','adolescenziale','biografico','narrativa']
+  categories: string[] = [
+    'giallo',
+    'horror',
+    'avventura',
+    'storico',
+    'cucina',
+    'adolescenziale',
+    'biografico',
+    'narrativa',
+  ];
   constructor(
     private bookServ: BookServiceService,
     private router: Router,
@@ -39,11 +51,11 @@ export class BookEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    
+
     this.bookId = this.route.snapshot.paramMap.get('id') ?? '';
     if (this.bookId) {
       this.isEditing = true;
-     
+
       this.bookServ.getBook(this.bookId).subscribe(
         (book) => {
           if (book) {
@@ -59,7 +71,7 @@ export class BookEditorComponent implements OnInit {
     }
   }
 
-initForm(): void {
+  initForm(): void {
     this.bookForm = this.formBuilder.group({
       id: [''],
       author: ['', Validators.required],
@@ -67,8 +79,8 @@ initForm(): void {
       cover: [''],
       description: [''],
       isFavourite: [false],
-      category:[''],
-      isRead:false
+      category: [''],
+      isRead: false,
     });
   }
 
@@ -76,7 +88,6 @@ initForm(): void {
     if (this.bookForm.valid) {
       const book: Book = this.bookForm.value;
       if (this.isEditing) {
-      
         this.bookServ.updateBook(this.bookId, book).subscribe(
           (response) => {
             this.router.navigateByUrl('/home');
@@ -86,7 +97,6 @@ initForm(): void {
           }
         );
       } else {
-       
         this.bookServ.createBook(book).subscribe(
           (response) => {
             this.router.navigateByUrl('/home');
@@ -108,5 +118,4 @@ initForm(): void {
       this.bookForm.get('category')?.setValue('');
     }
   }
-  
 }
