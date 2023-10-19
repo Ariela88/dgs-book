@@ -1,0 +1,114 @@
+body {
+    background-color: rgb(143, 227, 255);
+  }
+  
+  input {
+  
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  
+  label {
+  
+    font-weight: bold;
+  }
+  
+  button {
+  
+    width: 160px;
+    background-color: #ab5e00;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  .form-container {
+    width: 600px;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:burlywood;
+    border-radius: 20px;
+    
+  }
+  
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .custom-form {
+  
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    align-items: flex-start;
+    justify-content: space-between;
+  
+  
+  }
+  
+  .message-validation {
+    color: red;
+    width: 200px;
+    font-size: 12px;
+    text-align: right;
+    align-self: flex-end;
+  }
+  
+  .password-input {
+    display: flex;
+  
+  }
+  
+  
+  
+  .show-password input {
+    flex: 1 1;
+  
+  }
+  
+  .input-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  
+  select {
+    width: 54%;
+  }
+  
+  .button-container {
+    display: flex;
+    width: 100%;
+    gap: 24px;
+    justify-content: space-between;
+  }
+  
+  .ps-message {
+    width: 100%;
+    font-size: 10px;
+    text-align: right;
+  }

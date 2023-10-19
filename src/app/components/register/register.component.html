@@ -1,0 +1,23 @@
+<div class="container">
+
+    <div class="form-container">
+
+<div class="registration-form">
+    <h2>Registrazione</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="custom-form">
+      <div class="input-div">
+        <label for="email">Email:</label>
+        <input type="email" formControlName="email" id="email" required>
+      </div>
+      <div class="input-div">
+        <label for="password">Password:</label>
+        <input type="password" formControlName="psw" id="password" required>
+      </div>
+      <div class="button-container">
+        <button type="submit" [disabled]="!registrationForm.valid">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+    </div></div>
+  

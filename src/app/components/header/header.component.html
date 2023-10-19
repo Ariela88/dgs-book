@@ -16,4 +16,13 @@
  
   <button mat-button routerLink="editor"><mat-icon> library_add </mat-icon></button>
   <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon" routerLink = "/login" *ngIf="!storage.isUserLoggedIn()" >
+    <mat-icon>person</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" routerLink = "/register-user" *ngIf="!storage.isUserLoggedIn()">
+    <mat-icon>person_add</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon favorite-icon" (click)="logout()" *ngIf="storage.isUserLoggedIn()">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>

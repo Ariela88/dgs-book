@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../model/book';
 import { BehaviorSubject } from 'rxjs';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookStorageService {
+ 
   localStorageKey = 'favourites';
   localStorageKeyDelete = 'edited';
+  isAdmin:boolean= false
   favouritesSubject = new BehaviorSubject<Book[]>(
     this.getBooksFromLocalStorage()
   );
 
-  constructor() {
+  
+
+  constructor(private router:Router) {
     if (localStorage.getItem(this.localStorageKey)) {
       this.favouritesSubject.next(
         JSON.parse(localStorage.getItem(this.localStorageKey)!)
@@ -76,4 +81,42 @@ export class BookStorageService {
     }
     return false;
   }
+  
+
+  saveUser(email: string, password: string) {
+   
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+    this.isAdmin = true
+  }
+
+  getUser(): { email: string, password: string } | null {
+    const email = localStorage.getItem('email');
+    const password = localStorage.getItem('password');
+    if (email && password) {
+      return { email, password };
+    }
+    return null;
+  }
+
+  isUserLoggedIn(){
+    const user = this.getUser();
+    return !!user; 
+
+  }
+
+  logOut(){
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+    
+      this.router.navigateByUrl('/home')
+
+   
+}
+
+// userIsAdmin(): boolean {
+//   // const user = this.getUser();
+//   // return user && this.isAdmin;
+// }
+
 }

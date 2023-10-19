@@ -55,8 +55,10 @@ export class BookListComponent implements OnInit {
       this.bookServ.searchBooks(this.searchTerm);
       this.bookServ.allBooks$.subscribe((books) => {
         this.books = books;
+        
         this.showBack = true
       });
+      this.searchTerm = ''
     } else {
       this.router.navigateByUrl('/home');
     }
