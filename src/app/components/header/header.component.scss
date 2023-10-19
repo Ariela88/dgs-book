@@ -3,13 +3,16 @@
   
   font-family: 'La Belle Aurore', cursive;
   font-size: 60px;
-  z-index: 999;
+ 
 
   cursor: pointer;
 
 }
 .middle-brown{
-  text-shadow: -1px 0 #6b2e00, 0 1px #ffffff, 1px 0 #6b2e00, 0 -1px #ffffff
+  text-shadow: -2px 0 #6b2e00, 0 1px #ffffff, 2px 0 #ffffff, 0 -1px #ffffff;
+  position: relative;
+  z-index: 9999;
+  
 }
 
 .example-spacer {

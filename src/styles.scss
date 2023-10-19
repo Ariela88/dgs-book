@@ -20,7 +20,7 @@ a {
 }
 
 mat-toolbar {
-    background-color: burlywood !important;
+    background-color: rgba(222, 184, 135, 0.84) !important;
     margin-bottom: 40px;
     height: 60px;
 }
@@ -35,15 +35,16 @@ mat-card {
 }
 
 mat-select,mat-label,mat-form-field{
-    background-color: burlywood !important;
+    background-color: transparent !important;
     color: white !important;
+  
 }
 .mat-mdc-form-field-subscript-wrapper{
     height: 4px;
 }
 
 .mat-mdc-text-field-wrapper{
-    background-color: burlywood !important;
+    background-color: transparent !important;
 }
 
 .mat-typography {
