@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemeService } from './services/theme.service';
 
 
 @Component({
@@ -8,7 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor(){}
+
+
   title = 'dgs-book';
 
 }

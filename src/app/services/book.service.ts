@@ -13,8 +13,8 @@ allBooksSubject = new BehaviorSubject<Book[]>([]);
 arrayClone:Book[] = []  
 allBooks$ = this.allBooksSubject.asObservable();
 
-
-jsonBooks:Book[] = [
+jsonBooks:Book[] = 
+  [
     {
      "author": "Merle Blanda",
      "title": "Handcrafted Granite Bacon",
@@ -107,13 +107,8 @@ jsonBooks:Book[] = [
 
 
 
-  constructor(
-    private http: HttpClient, 
-    private storage:BookStorageService
-    ) 
-    {
-      this.allBooksSubject.next(this.jsonBooks)
-    }
+  constructor(private http: HttpClient,private storage:BookStorageService) 
+              {this.allBooksSubject.next(this.jsonBooks)}
 
 
   getBook(id: string): Observable<Book> {

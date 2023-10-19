@@ -1,6 +1,6 @@
 .title {
   padding-top:24px ;
-  
+  color:white;
   font-family: 'La Belle Aurore', cursive;
   font-size: 60px;
  
@@ -17,6 +17,10 @@
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+mat-icon{
+  color: #ffffff;
 }
 
 .brown {

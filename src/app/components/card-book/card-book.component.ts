@@ -6,8 +6,7 @@ import { BookStorageService } from 'src/app/services/book-storage.service';
 
 
 @Component({
-  selector: 'app-card-book',
- 
+  selector: 'app-card-book', 
   templateUrl: './card-book.component.html',
   styleUrls: ['./card-book.component.scss'],
 })

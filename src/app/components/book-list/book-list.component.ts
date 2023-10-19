@@ -1,14 +1,13 @@
 
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 
 @Component({
   selector: 'app-book-list',
-
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
 })
@@ -18,12 +17,21 @@ export class BookListComponent implements OnInit {
   searchTerm = '';
   showBack:boolean = false
   selectedSortingOption: string = 'author';
+  ascending: boolean = true;
+
 
   constructor(
     private route: ActivatedRoute,
     public bookServ: BookServiceService,
-    private router: Router
+    private router: Router,
+    public themeChange:ThemeService
   ) {}
+
+ 
+
+  toggleColore(): void {
+    this.themeChange.toggleColore();
+  }
 
   ngOnInit(): void {
     this.bookServ.getBooks().subscribe((books) => {
@@ -58,16 +66,25 @@ export class BookListComponent implements OnInit {
   }
 
 
-  sortBooksBy(param: 'title' | 'author'): void {
+  
+  sortBooksBy(param: 'title' | 'author' | 'id'): void {
     this.books.sort((a, b) => {
-      if (param === 'title') {
-        return a.title.localeCompare(b.title);
-      } else if (param === 'author') {
-        return a.author.localeCompare(b.author);
-      }
-      return 0; 
+        if (param === 'title') {
+            return this.ascending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+        } else if (param === 'author') {
+            return this.ascending ? a.author.localeCompare(b.author) : b.author.localeCompare(a.author);
+        } else if (param === 'id') {
+            const idA = parseInt(a.id, 10); 
+            const idB = parseInt(b.id, 10); 
+
+            return this.ascending ? idA - idB : idB - idA;
+        }
+        return 0; 
     });
-  }
+
+    this.ascending = !this.ascending;
+}
+
   
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {

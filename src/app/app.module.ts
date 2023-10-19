@@ -13,6 +13,7 @@ import { CardBookComponent } from './components/card-book/card-book.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { HomeLibraryComponent } from './components/home-library/home-library.component';
 import { FormsModule } from '@angular/forms';
+import { ThemeChangeDirective } from './theme-change.directive';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     BookListComponent,
     CardBookComponent,
     FavouritesComponent,
-    HomeLibraryComponent
+    HomeLibraryComponent,
+    ThemeChangeDirective
     
    
   ],

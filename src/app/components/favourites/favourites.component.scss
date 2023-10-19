@@ -7,7 +7,12 @@
     
 }
 
-app-card-book{
-    width: 300px !important; 
-    height:300px !important ;
+
+
+@media(max-width:500px){
+
+    .favourites-container{
+        display: unset;
+    }
+
 }

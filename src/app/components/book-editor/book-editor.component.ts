@@ -7,8 +7,7 @@ import { BookStorageService } from 'src/app/services/book-storage.service';
 
 
 @Component({
-  selector: 'app-book-editor',
-  
+  selector: 'app-book-editor',  
   templateUrl: './book-editor.component.html',
   styleUrls: ['./book-editor.component.scss'],
 })
@@ -26,7 +25,6 @@ export class BookEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-
     
     this.bookId = this.route.snapshot.paramMap.get('id') ?? '';
     if (this.bookId) {
@@ -47,7 +45,7 @@ export class BookEditorComponent implements OnInit {
     }
   }
 
-  private initForm(): void {
+initForm(): void {
     this.bookForm = this.formBuilder.group({
       id: [''],
       author: ['', Validators.required],

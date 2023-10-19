@@ -32,8 +32,6 @@ export class BookStorageService {
     }
   }
 
-  //Funzioni per il salvataggio dei preferiti
-
   getBooksFromLocalStorage(): Book[] {
     const storedBooks = localStorage.getItem(this.localStorageKey);
     return storedBooks ? JSON.parse(storedBooks) : [];
