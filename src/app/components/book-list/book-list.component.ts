@@ -1,44 +1,34 @@
-
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
 import { ThemeService } from 'src/app/services/theme.service';
-import { MatIconModule } from '@angular/material/icon';
 import { NgIf, NgFor } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { MaterialModule } from 'src/app/material/material/material.module';
 
 @Component({
-    selector: 'app-book-list',
-    templateUrl: './book-list.component.html',
-    styleUrls: ['./book-list.component.scss'],
-    standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        FormsModule,
-        NgIf,
-        MatIconModule,
-        NgFor,
-    ],
+  selector: 'app-book-list',
+  templateUrl: './book-list.component.html',
+  styleUrls: ['./book-list.component.scss'],
+  standalone: true,
+  imports: [ReactiveFormsModule, FormsModule, NgIf, MaterialModule, NgFor],
 })
 export class BookListComponent implements OnInit {
-
   books: Book[] = [];
   searchTerm = '';
-  showBack:boolean = false
+  showBack: boolean = false;
   selectedSortingOption: string = 'author';
   ascending: boolean = true;
-
+  readBooks: Book[] = [];
+  showOnlyReadBooks: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     public bookServ: BookServiceService,
     private router: Router,
-    public themeChange:ThemeService
+    public themeChange: ThemeService
   ) {}
-
- 
 
   toggleColore(): void {
     this.themeChange.toggleColore();
@@ -55,10 +45,10 @@ export class BookListComponent implements OnInit {
       this.bookServ.searchBooks(this.searchTerm);
       this.bookServ.allBooks$.subscribe((books) => {
         this.books = books;
-        
-        this.showBack = true
+
+        this.showBack = true;
       });
-      this.searchTerm = ''
+      this.searchTerm = '';
     } else {
       this.router.navigateByUrl('/home');
     }
@@ -78,27 +68,38 @@ export class BookListComponent implements OnInit {
     );
   }
 
+  filterReadBooks(): void {
+    this.showOnlyReadBooks = !this.showOnlyReadBooks;
 
-  
+    if (this.showOnlyReadBooks) {
+      this.readBooks = this.books.filter((book) => book.isRead);
+    } else {
+      this.readBooks = []; // Svuota l'array quando il filtro non è attivo
+    }
+  }
+
   sortBooksBy(param: 'title' | 'author' | 'id'): void {
     this.books.sort((a, b) => {
-        if (param === 'title') {
-            return this.ascending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
-        } else if (param === 'author') {
-            return this.ascending ? a.author.localeCompare(b.author) : b.author.localeCompare(a.author);
-        } else if (param === 'id') {
-            const idA = parseInt(a.id, 10); 
-            const idB = parseInt(b.id, 10); 
+      if (param === 'title') {
+        return this.ascending
+          ? a.title.localeCompare(b.title)
+          : b.title.localeCompare(a.title);
+      } else if (param === 'author') {
+        return this.ascending
+          ? a.author.localeCompare(b.author)
+          : b.author.localeCompare(a.author);
+      } else if (param === 'id') {
+        const idA = parseInt(a.id, 10);
+        const idB = parseInt(b.id, 10);
 
-            return this.ascending ? idA - idB : idB - idA;
-        }
-        return 0; 
+        return this.ascending ? idA - idB : idB - idA;
+      }
+      return 0;
     });
 
     this.ascending = !this.ascending;
-}
+  }
 
-  
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key === 'Enter' || event.keyCode === 13) {
@@ -118,6 +119,4 @@ export class BookListComponent implements OnInit {
       });
     });
   }
-  
-  
 }

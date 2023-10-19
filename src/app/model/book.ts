@@ -5,5 +5,9 @@ export interface Book {
     title:string;
     cover:string;
     description:string;
-    isFavourite:boolean
+    isFavourite:boolean;
+    category:string;
+    isRead:boolean
 }
+
+

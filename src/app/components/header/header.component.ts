@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ThemeService } from 'src/app/services/theme.service';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { BookStorageService } from 'src/app/services/book-storage.service';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material/material.module';
 
 
 @Component({
@@ -15,11 +12,8 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./header.component.scss'],
     standalone: true,
     imports: [
-        MatToolbarModule,
-        MatSlideToggleModule,
-        MatButtonModule,
+       MaterialModule,
         RouterLink,
-        MatIconModule,
         CommonModule
     ],
 })

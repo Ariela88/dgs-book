@@ -1,28 +1,26 @@
-
 <div class="table-container">
     <div class="button-row">
-        <div class="search-container"> 
+        <div class="search-container">
             <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input">
             <button class="search-button" (click)="onSearch()">Cerca
-            </button></div>
-        <!-- <div class="sort-container">
-            <mat-form-field appearance="fill">
+            </button>
+        </div>
+        <div class="sort-container">
+            <button (click)="filterReadBooks()">
+                {{ showOnlyReadBooks ? 'Mostra Tutti i Libri' : 'Mostra Solo i Libri Letti' }}
+            </button>
+            <!-- <mat-form-field appearance="fill">
               <mat-label>Ordina per</mat-label>
               <mat-select [(ngModel)]="selectedSortingOption">
                 <mat-option (click)="sortBooksBy('author')" value="author">Autore</mat-option>
                 <mat-option (click)="sortBooksBy('title')" value="title">Titolo</mat-option>
               </mat-select>
-            </mat-form-field>
-          </div> -->
-        
-      
-        <!-- <div class="sort-container">
-            <button (click)="sortBooksBy('author')">Ordina per Autore</button>   
+            </mat-form-field> -->
+            <button (click)="sortBooksBy('author')">Ordina per Autore</button>
             <button (click)="sortBooksBy('title')">Ordina per Titolo</button>
-        </div> -->
-        
+        </div>
     </div>
-    
+
 
     <div class="back" *ngIf="showBack">
         <button (click)="navigateToHome()">Indietro</button>
@@ -30,15 +28,21 @@
     <table>
         <thead>
             <tr>
-                <th (click)="sortBooksBy('id')">Id <mat-icon > {{ascending?'arrow_drop_up' :'arrow_drop_down'}}</mat-icon></th>
-                <th (click)="sortBooksBy('author')">Author<mat-icon > {{ascending?'arrow_drop_up' :'arrow_drop_down'}}</mat-icon></th>
-                <th (click)="sortBooksBy('title')">Title<mat-icon > {{ascending?'arrow_drop_up' :'arrow_drop_down'}}</mat-icon></th>
+                <th (click)="sortBooksBy('id')">Id <mat-icon> {{ascending?'arrow_drop_up'
+                        :'arrow_drop_down'}}</mat-icon></th>
+                <th (click)="filterReadBooks()">Letto </th>
+                <th (click)="sortBooksBy('author')">Author<mat-icon> {{ascending?'arrow_drop_up'
+                        :'arrow_drop_down'}}</mat-icon></th>
+                <th (click)="sortBooksBy('title')">Title<mat-icon> {{ascending?'arrow_drop_up'
+                        :'arrow_drop_down'}}</mat-icon></th>
                 <th> </th>
             </tr>
         </thead>
         <tbody class="table-body">
-            <tr *ngFor="let book of books">
+            <tr *ngFor="let book of (showOnlyReadBooks ? readBooks : books)">
+
                 <td (click)="navigateToBookDetails(book.id)">{{ book.id }}</td>
+                <td><input type="checkbox" [(ngModel)]="book.isRead"></td>
                 <td (click)="navigateToBookDetails(book.id)">{{ book.author }} </td>
                 <td (click)="navigateToBookDetails(book.id)">{{ book.title }}</td>
                 <td class="icon-trash" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon></td>

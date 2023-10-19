@@ -4,8 +4,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
 import { BookStorageService } from 'src/app/services/book-storage.service';
-import { MatButtonModule } from '@angular/material/button';
 import { NgIf } from '@angular/common';
+import { MaterialModule } from 'src/app/material/material/material.module';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -14,16 +15,20 @@ import { NgIf } from '@angular/common';
     styleUrls: ['./book-editor.component.scss'],
     standalone: true,
     imports: [
+      CommonModule,
         NgIf,
         ReactiveFormsModule,
-        MatButtonModule,
+        MaterialModule,
         RouterLink,
+        
     ],
 })
 export class BookEditorComponent implements OnInit {
   bookForm!: FormGroup;
   isEditing = false;
   bookId!: string 
+  isNewCategorySelected = false;
+  categories:string[]=['giallo','horror','avventura','storico','cucina','adolescenziale','biografico','narrativa']
   constructor(
     private bookServ: BookServiceService,
     private router: Router,
@@ -62,6 +67,8 @@ initForm(): void {
       cover: [''],
       description: [''],
       isFavourite: [false],
+      category:[''],
+      isRead:false
     });
   }
 
@@ -93,4 +100,13 @@ initForm(): void {
       console.error('Il form non è valido. Controlla i dati del libro.');
     }
   }
+
+  onCategorySelectionChange(): void {
+    const selectedCategory = this.bookForm.value.category;
+    this.isNewCategorySelected = selectedCategory.toLowerCase() === 'altro';
+    if (this.isNewCategorySelected) {
+      this.bookForm.get('category')?.setValue('');
+    }
+  }
+  
 }

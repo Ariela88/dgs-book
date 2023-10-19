@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-
+import { MaterialModule } from 'src/app/material/material/material.module';
 import { Book } from 'src/app/model/book';
 import { BookStorageService } from 'src/app/services/book-storage.service';
 import { CardBookComponent } from '../card-book/card-book.component';
@@ -12,7 +12,7 @@ import { NgFor } from '@angular/common';
     templateUrl: './favourites.component.html',
     styleUrls: ['./favourites.component.scss'],
     standalone: true,
-    imports: [NgFor, CardBookComponent]
+    imports: [NgFor, CardBookComponent,MaterialModule]
 })
 export class FavouritesComponent implements OnInit {
 

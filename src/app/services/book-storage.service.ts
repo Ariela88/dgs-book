@@ -10,7 +10,7 @@ export class BookStorageService {
  
   localStorageKey = 'favourites';
   localStorageKeyDelete = 'edited';
-  isAdmin:boolean= false
+  isLoggedIn:boolean= false
   favouritesSubject = new BehaviorSubject<Book[]>(
     this.getBooksFromLocalStorage()
   );
@@ -25,6 +25,9 @@ export class BookStorageService {
     }
   }
 
+  isAuthenticated(): boolean {
+    return this.isLoggedIn;
+  }
   updateBookInLocalStorage(updatedBook: Book): void {
     const storedBooks = this.getBooksFromLocalStorage();
     const index = storedBooks.findIndex((book) => book.id === updatedBook.id);
@@ -87,7 +90,7 @@ export class BookStorageService {
    
     localStorage.setItem('email', email);
     localStorage.setItem('password', password);
-    this.isAdmin = true
+    
   }
 
   getUser(): { email: string, password: string } | null {
@@ -106,6 +109,7 @@ export class BookStorageService {
   }
 
   logOut(){
+    
     localStorage.removeItem('email');
     localStorage.removeItem('password');
     

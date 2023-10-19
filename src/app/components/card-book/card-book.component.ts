@@ -3,11 +3,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
 import { BookStorageService } from 'src/app/services/book-storage.service';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MaterialModule } from 'src/app/material/material/material.module';
 import { NgIf } from '@angular/common';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-card-book',
@@ -16,9 +14,9 @@ import { NgIf } from '@angular/common';
     standalone: true,
     imports: [
         NgIf,
-        MatCardModule,
-        MatButtonModule,
-        MatIconModule,
+        MaterialModule,
+        CommonModule
+  
     ],
 })
 export class CardBookComponent implements OnInit{

@@ -103,8 +103,6 @@ $super-red: (
 
 $my-primary: mat.define-palette($super-yellow, 500);
 $my-accent: mat.define-palette($super-violet, 500);
-
-// The "warn" palette is optional and defaults to red if not specified.
 $my-warn: mat.define-palette($super-red);
 
 

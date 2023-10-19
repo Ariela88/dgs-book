@@ -21,7 +21,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Enim iusto quod quod veniam ad delectus. Perspiciatis dolor possimus sint laborum. Voluptates sint reprehenderit quod quod.",
      "id": "5",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "giallo",
+     "isRead":false
     },
     {
      "author": "Jerry Pfannerstill III",
@@ -29,7 +31,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Atque mollitia fuga veniam ipsum quibusdam veritatis ea. Eos voluptatibus praesentium. Rerum quidem mollitia.",
      "id": "8",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "adolescenziale",
+     "isRead":false
     },
     {
      "author": "Diane Cole",
@@ -37,7 +41,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Nobis at velit. Exercitationem dolor ipsam voluptatem tempore necessitatibus. Necessitatibus dolore ut et optio sunt commodi. Eum magni magnam aut perspiciatis veritatis. Neque esse porro repellat possimus odio nemo quos corrupti. Temporibus labore iste expedita enim asperiores repellat neque sint.",
      "id": "9",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "giallo",
+     "isRead":false
     },
     {
      "author": "Claudia Heathcote",
@@ -45,7 +51,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Aperiam similique dicta vel tempore. Veritatis suscipit saepe ex ipsam tenetur est possimus alias. Similique consequuntur quam vero nulla laborum impedit vel autem. Ipsa delectus ex possimus impedit. Accusamus suscipit facere suscipit ut veritatis qui. Voluptatum id laborum ipsam nulla suscipit iure illum voluptas.",
      "id": "11",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "biografico",
+     "isRead":false
     },
     {
      "author": "Holly Medhurst",
@@ -53,7 +61,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Dignissimos totam harum odio. Optio adipisci soluta inventore similique. Soluta labore voluptatem voluptatibus sapiente qui culpa nisi. Eum ad laudantium quia praesentium illo magni provident adipisci.",
      "id": "14",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "avventura",
+     "isRead":false
     },
     {
      "author": "Leon Cremin",
@@ -61,7 +71,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Delectus similique saepe maxime eos ut impedit. Occaecati libero ut. Sunt sapiente delectus et earum optio illum suscipit. Voluptate dolor pariatur.",
      "id": "16",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "horror",
+     "isRead":false
     },
     {
      "author": "Adam Mosciski",
@@ -69,7 +81,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Ex dolores veniam id. Quas nostrum excepturi. Expedita reprehenderit quae eaque dicta. Nihil eos repellendus molestiae commodi.",
      "id": "17",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "cucina",
+     "isRead":false
     },
     {
      "author": "Babbo Natale",
@@ -77,7 +91,9 @@ jsonBooks:Book[] =
      "cover": "https://eidec2hct28.exactdn.com/uploads/Original_WW223791-scaled.jpg?strip=all&lossy=1&ssl=1",
      "description": "la storia dei pinguini",
      "id": "18",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "narrativa",
+     "isRead":false
     },
     {
      "author": "Flora Stehr",
@@ -85,7 +101,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Ratione veritatis sint quasi magni recusandae libero est ratione unde. Aut deserunt ad rem id in deleniti nobis. Odit dolorem sequi modi doloremque saepe quae. Repellat tempore aspernatur soluta nihil impedit impedit ipsa veniam rem.",
      "id": "19",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "biografico",
+     "isRead":false
     },
     {
      "author": "Wilfred Okuneva",
@@ -93,7 +111,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Eveniet eveniet facilis natus ipsum corporis. Sed mollitia nihil vitae velit. Voluptas magni voluptate explicabo ratione quasi facere voluptates minus eaque. Minima quidem rem nesciunt aut sunt molestias. A perferendis animi vero rerum perferendis corporis debitis soluta voluptate.",
      "id": "20",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "storico",
+     "isRead":false
     },
     {
      "author": "Vera Cummings",
@@ -101,7 +121,9 @@ jsonBooks:Book[] =
      "cover": "https://loremflickr.com/640/480/abstract",
      "description": "Asperiores inventore consequuntur. Repellendus hic neque aperiam voluptatum quos. Voluptatum laborum itaque facere veniam delectus necessitatibus adipisci sit.",
      "id": "21",
-     "isFavourite":false
+     "isFavourite":false,
+     "category": "romantico",
+     "isRead":false
     }
    ]
 

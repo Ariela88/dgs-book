@@ -1,10 +1,9 @@
 <mat-toolbar color="primary">
-  <mat-slide-toggle (toggleChange)="changeTheme()" [checked]="!isLightTheme">
-    {{!isLightTheme? 'dark':'light'}} </mat-slide-toggle>
   
-  <span class="example-spacer"></span>
+    <button mat-button routerLink="editor"><mat-icon> library_add </mat-icon></button>
+
   <button mat-button routerLink="favourites"><mat-icon> favorite </mat-icon></button>
-  
+  <span class="example-spacer"></span>
   <!-- <button mat-button [matMenuTriggerFor]="menu"><mat-icon> menu </mat-icon></button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="editor">Aggiungi un libro </button>
@@ -14,7 +13,7 @@
  
   <span routerLink="home" class="title">...Librar<span class="middle-brown">Y</span><span class="brown">our... </span></span>
  
-  <button mat-button routerLink="editor"><mat-icon> library_add </mat-icon></button>
+
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" routerLink = "/login" *ngIf="!storage.isUserLoggedIn()" >
     <mat-icon>person</mat-icon>
@@ -25,4 +24,6 @@
   <button mat-icon-button class="example-icon favorite-icon" (click)="logout()" *ngIf="storage.isUserLoggedIn()">
     <mat-icon>logout</mat-icon>
   </button>
+  <mat-slide-toggle (toggleChange)="changeTheme()" [checked]="!isLightTheme">
+    {{!isLightTheme? 'dark':'light'}} </mat-slide-toggle>
 </mat-toolbar>

@@ -15,7 +15,7 @@ const routes: Routes = [
 
 {path: 'home', component: HomeLibraryComponent},
 {path: 'list', component: BookListComponent},
-{path: 'editor/:id', component: BookEditorComponent},
+{path: 'editor/:id', component: BookEditorComponent,canActivate: [AuthGuard]},
 {path: '', redirectTo: 'home',pathMatch:'full'},
 {path: 'favourites', component: FavouritesComponent,canActivate: [AuthGuard]},
 {path: 'book-card/:id', component: CardBookComponent},

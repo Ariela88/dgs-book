@@ -1,5 +1,25 @@
 <div *ngIf="[isEditing]" class="editor-container">
     <form [formGroup]="bookForm" class="form-container">
+        <div *ngIf="[isEditing]" class="editor-container">
+            <form [formGroup]="bookForm" class="form-container">
+                <div class="input-container">
+                    <label for="category">Categoria:</label>
+                    <mat-select id="category" formControlName="category">
+                      <mat-option *ngFor="let category of categories" [value]="category">
+                        {{ category }}
+                      </mat-option>
+                      <mat-option [value]="'altro'" (click)="onCategorySelectionChange()">Altro</mat-option>
+                    </mat-select>
+                  
+                    <div *ngIf="isNewCategorySelected" class="input-container">
+                        <label for="newCategory">Nuova Categoria:</label>
+                        <input type="text" id="newCategory" formControlName="category" />
+                    </div>
+                </div>
+        
+        
+        
+        
         <div class="input-container">
             <label for="author">Autore:</label>
             <input type="text" id="author" formControlName="author" />
@@ -12,6 +32,8 @@
             <label for="cover">Copertina:</label>
             <input type="text" id="cover" formControlName="cover" />
         </div>
+        
+        
         <div class="input-container">
             <label for="description">Descrizione:</label>
             <textarea id="description" formControlName="description"></textarea>
