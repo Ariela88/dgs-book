@@ -1,9 +1,22 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app/app.module';
+
+import { importProvidersFrom } from '@angular/core';
+import { AppComponent } from './app/app.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app/app-routing.module';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+bootstrapApplication(AppComponent, {
+    providers: [
+        importProvidersFrom(BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule),
+        provideAnimations(),
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+})
   .catch(err => console.error(err));
 
   

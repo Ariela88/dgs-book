@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
 import { BookStorageService } from 'src/app/services/book-storage.service';
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf } from '@angular/common';
 
 
 @Component({
-  selector: 'app-book-editor',  
-  templateUrl: './book-editor.component.html',
-  styleUrls: ['./book-editor.component.scss'],
+    selector: 'app-book-editor',
+    templateUrl: './book-editor.component.html',
+    styleUrls: ['./book-editor.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        ReactiveFormsModule,
+        MatButtonModule,
+        RouterLink,
+    ],
 })
 export class BookEditorComponent implements OnInit {
   bookForm!: FormGroup;

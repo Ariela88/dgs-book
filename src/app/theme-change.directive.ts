@@ -2,7 +2,8 @@ import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { ThemeService } from './services/theme.service';
 
 @Directive({
-  selector: '[appThemeChange]'
+    selector: '[appThemeChange]',
+    standalone: true
 })
 export class ThemeChangeDirective {
 

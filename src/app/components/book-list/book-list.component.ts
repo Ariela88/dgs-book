@@ -4,12 +4,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookServiceService } from 'src/app/services/book.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { MatIconModule } from '@angular/material/icon';
+import { NgIf, NgFor } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss'],
+    selector: 'app-book-list',
+    templateUrl: './book-list.component.html',
+    styleUrls: ['./book-list.component.scss'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        NgIf,
+        MatIconModule,
+        NgFor,
+    ],
 })
 export class BookListComponent implements OnInit {
 
