@@ -1,3 +1,5 @@
+
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="login-container">
     
@@ -10,13 +12,13 @@
           <label for="psw">password*: </label>
           <input id="psw" [type]="showPassword ? 'text' : 'password'" formControlName="psw">
         </div>
-        <a (click)="resetPass()">Non ti ricordi la password?</a>
+       
         <div class="button-container">
           <button type="submit" [disabled]="!loginForm.valid">Submit</button>
           <button type="reset">Reset</button>
         </div>
-    
+        <a (click)="register()">Non sei ancora registrato? Registrati</a>
       </div>
     </div>
-    
     </form>
+

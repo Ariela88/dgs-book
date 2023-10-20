@@ -41,7 +41,7 @@ export class LoginComponent {
   }
   
 
-  resetPass(){
-    this.loginForm.reset()
+  register(){
+    this.router.navigateByUrl('register-user')
   }
 }
