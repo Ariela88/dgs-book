@@ -134,3 +134,23 @@ tbody {
     font-family: 'Goudy Bookletter 1911', serif;
 
 }
+
+@media(max-width:500px){
+    th,
+tr,
+td {
+    font-size: 16px;
+  
+  
+   
+
+}
+
+.sort-container button{
+    font-size: 12px;
+    width: 80px;
+}
+
+   
+
+}
