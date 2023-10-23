@@ -32,4 +32,14 @@ mat-icon{
   .title{
       font-size: 24px;
   }
+  mat-icon{
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+}
+
+button{
+  margin: 0 !important;
+    padding: 0 !important;
+}
 }
