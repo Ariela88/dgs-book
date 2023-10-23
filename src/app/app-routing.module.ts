@@ -23,6 +23,7 @@ const routes: Routes = [
 {path: 'login', component: LoginComponent},
 {path: 'register-user', component: RegisterComponent},
 {path: 'register', component: BookEditorComponent},
+{path: '**', redirectTo: 'home',pathMatch:'full'},
 
 ];
 

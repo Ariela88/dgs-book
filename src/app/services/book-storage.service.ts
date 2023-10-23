@@ -118,9 +118,4 @@ export class BookStorageService {
    
 }
 
-// userIsAdmin(): boolean {
-//   // const user = this.getUser();
-//   // return user && this.isAdmin;
-// }
-
 }

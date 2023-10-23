@@ -85,7 +85,7 @@ export class BookListComponent implements OnInit {
     if (this.showOnlyReadBooks) {
       this.readBooks = this.books.filter((book) => book.isRead);
     } else {
-      this.readBooks = []; // Svuota l'array quando il filtro non è attivo
+      this.readBooks = [];
     }
   }
 
