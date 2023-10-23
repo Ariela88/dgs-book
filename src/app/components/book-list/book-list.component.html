@@ -1,5 +1,5 @@
-<div class="table-container">
-    <div class="button-row">
+<div class="table-container" color="primary" [ngClass]="{'table-layout': isTableView, 'grid-layout': !isTableView}">
+    <div class="button-row" color="primary">
         <div class="search-container">
             <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca per titolo o autore" class="search-input">
             <button class="search-button" (click)="onSearch()">Cerca
@@ -16,8 +16,14 @@
                 <mat-option (click)="sortBooksBy('title')" value="title">Titolo</mat-option>
               </mat-select>
             </mat-form-field> -->
-            <button (click)="sortBooksBy('author')">Ordina per Autore</button>
-            <button (click)="sortBooksBy('title')">Ordina per Titolo</button>
+            <button (click)="toggleTableView()">
+                {{ isTableView ? 'Vista a griglia' : 'Vista a elenco' }}
+            </button>
+
+            <button (click)="sortBooksBy('author')">Ordina per Autore<mat-icon>{{ascending?'arrow_drop_up'
+                    :'arrow_drop_down'}}</mat-icon></button>
+            <button (click)="sortBooksBy('title')">Ordina per Titolo <mat-icon> {{ascending?'arrow_drop_up'
+                    :'arrow_drop_down'}}</mat-icon></button>
         </div>
     </div>
 
@@ -25,7 +31,8 @@
     <div class="back" *ngIf="showBack">
         <button (click)="navigateToHome()">Indietro</button>
     </div>
-    <table>
+    <table *ngIf="isTableView">
+
         <thead>
             <tr>
                 <th (click)="sortBooksBy('id')">Id <mat-icon> {{ascending?'arrow_drop_up'
@@ -38,9 +45,9 @@
                 <th> </th>
             </tr>
         </thead>
+
         <tbody class="table-body">
             <tr *ngFor="let book of (showOnlyReadBooks ? readBooks : books)">
-
                 <td (click)="navigateToBookDetails(book.id)">{{ book.id }}</td>
                 <td><input type="checkbox" [(ngModel)]="book.isRead"></td>
                 <td (click)="navigateToBookDetails(book.id)">{{ book.author }} </td>
@@ -49,4 +56,21 @@
             </tr>
         </tbody>
     </table>
+
+
+    <div class="table-row" *ngIf="!isTableView">
+         <div *ngIf="books" class="card-grid-container">
+            <div class="card-grid" *ngFor="let book of (showOnlyReadBooks ? readBooks : books)">
+                <h5>{{book.id}}</h5>
+                <h3 (click)="navigateToBookDetails(book.id)" class="title-grid-card">{{book.title}}</h3>
+                <span class="author-span">{{book.author}}</span>
+                <img src="{{book.cover}}" alt="">
+                <div class="action-container">
+                    <span><input type="checkbox" [(ngModel)]="book.isRead">Letto</span>
+                    <span class="icon-trash" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

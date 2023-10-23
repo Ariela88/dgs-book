@@ -38,6 +38,7 @@ export class HeaderComponent {
 
   logout(){
     this.storage.logOut()
+    this.router.navigateByUrl('login');
 
   }
 

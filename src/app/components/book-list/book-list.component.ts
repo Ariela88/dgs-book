@@ -7,13 +7,22 @@ import { NgIf, NgFor } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material/material.module';
 import { CommonModule } from '@angular/common';
+import { CardBookComponent } from '../card-book/card-book.component';
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, NgIf, MaterialModule, NgFor,CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    NgIf,
+    MaterialModule,
+    NgFor,
+    CommonModule,
+    CardBookComponent,
+  ],
 })
 export class BookListComponent implements OnInit {
   books: Book[] = [];
@@ -23,6 +32,7 @@ export class BookListComponent implements OnInit {
   ascending: boolean = true;
   readBooks: Book[] = [];
   showOnlyReadBooks: boolean = false;
+  isTableView: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -119,5 +129,9 @@ export class BookListComponent implements OnInit {
         this.showBack = false;
       });
     });
+  }
+
+  toggleTableView(): void {
+    this.isTableView = !this.isTableView;
   }
 }
